@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 
 import { UniversalModule } from 'angular2-universal';
 
-import { APP_DECLARATIONS } from './app.declarations';
-import { APP_ENTRY_COMPONENTS } from './app.entry-components';
-import { APP_IMPORTS } from './app.imports';
-import { APP_PROVIDERS } from './app.providers';
+import {
+  APP_DECLARATIONS,
+  APP_ENTRY_COMPONENTS,
+  APP_IMPORTS,
+  APP_PROVIDERS
+} from './app.module.properties';
 
 import { AppComponent } from './app.component';
 
@@ -22,5 +24,4 @@ import { AppComponent } from './app.component';
   bootstrap: [AppComponent],
   providers: [APP_PROVIDERS]
 })
-export class AppModule { }
-
+export class AppModule {}
