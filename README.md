@@ -3,8 +3,95 @@
 ### Locked Dependencies
 - @types/jasmine locked 2.5.41 : Above breaks build
 
+### Package Upgrade Scripts Checklist
+- yarn start / yarn run start:hmr
+- yarn run compile / yarn run prodserver (ERROR in browser)
+- yarn test
+- yarn run build / yarn run server:prod (This one is a bit weird, keeps refreshing on the server)
+- yarn run universal (ERROR in build)
+
 ### NPM (Yarn) Scripts Checklist
-- Use yarn start for dev server. Default dev port is 3000. &#9989;
+- ~~ "postinstall": "npm run sass && npm run build:dll", ~~
+- ~~ "rimraf": "rimraf", ~~
+- ~~ "webdev": "webpack-dev-server", ~~
+- ~~ "webdev:hmr": "npm run webdev -- --inline --hot", ~~
+- ~~ "webpack": "webpack", ~~
+- ~~ "ngc": "./node_modules/.bin/ngc -p tsconfig.aot.json", ~~
+- "ngc:universal": "./node_modules/.bin/ngc -p tsconfig.aot.universal.json",
+- "webdriver-manager": "webdriver-manager",
+- "webdriver:update": "npm run webdriver-manager update",
+- "webdriver:start": "npm run webdriver-manager start",
+- "protractor": "protractor",
+- "pree2e:only": "npm run webdriver:update -- --standalone",
+- "e2e": "npm run sass && npm-run-all -p -r e2e:server e2e:only",
+- "e2e:testall": "npm run e2e:jit && npm run e2e:aot && npm run e2e:universal && npm run e2e:universal:aot",
+- "e2e:aot": "npm run compile:e2e && npm run e2e",
+- "e2e:jit": "npm run build:prod:e2e && npm run e2e",
+- "e2e:universal": "npm run build:universal:prod:e2e && npm-run-all -p -r server:universal e2e:only:universal",
+- "e2e:universal:aot": "npm run compile:universal:e2e && npm-run-all -p -r server:universal e2e:only:universal",
+- "e2e:only:universal": "npm run protractor -- --universal",
+- "e2e:only": "npm run protractor",
+- "e2e:live": "npm run e2e -- --elementExplorer",
+- "e2e:server": "node prodserver",
+- ~~ "pretest": "npm run lint && npm run sass", ~~
+- ~~ "pretest:once": "npm run lint && npm run sass", ~~
+- ~~ "pretest:once:ci": "npm run lint", ~~
+- ~~ "test:once": "karma start", ~~
+- ~~ "test:once:ci": "karma start", ~~
+- ~~ "test": "karma start", ~~ * 1 thy error [at loader]?
+- "ci": "npm run e2e:jit && npm run test:once:ci",
+- "ci:testall": "npm run e2e:testall && npm run test:once:ci",
+- ~~ "tslint": "node node_modules/tslint/bin/tslint", ~~
+- ~~ "lint": "npm run tslint \"src/app/**/*.ts\" ", ~~
+- "clean": "npm cache clean && npm run clean:compile && npm run rimraf -- node_modules doc typings coverage dist .awcache dll",
+- ~~ "clean:dist": "npm run rimraf -- dist .awcache", ~~
+- ~~ "clean:dll": "npm run rimraf -- dll", ~~
+- ~~ "clean:compile": "npm run rimraf -- \"compiled\" ", ~~
+- ~~ "compile": "npm run compile:aot", ~~
+- ~~ "compile:aot": "npm run sass && npm run clean:compile && npm run ngc && npm run build:aot", ~~
+- "compile:e2e": "npm run sass && npm run clean:compile && npm run ngc && npm run build:aot:prod:e2e",
+- "compile:universal": "npm run sass && npm run clean:compile && npm run ngc:universal && npm run build:universal:aot",
+- "compile:universal:e2e": "npm run sass && npm run clean:compile && npm run ngc:universal && npm run build:universal:aot:prod:e2e",
+- "compile:dev": "npm run sass && npm run clean:compile && npm run ngc && npm run build:aot:dev",
+- "compile:only": "npm run clean:compile && npm run sass && npm run ngc",
+- "compile:watch": "watch-run -i npm run compile:only -p 'src/app/**/*.ts, src/app/**/*.scss' npm run compile:only",
+- "prodserver": "node prodserver",
+- ~~ "sass": "node-sass src -o src --include-path node_modules --output-style compressed -q", ~~
+- ~~ "sass:watch": "node-sass -w src -o src --include-path node_modules --output-style compressed -q", ~~
+- ~~ "start": "npm run server:dev", ~~
+- ~~ "start:hmr": "npm run server:hmr", ~~
+- "serve80": "sudo PORT=80 node prodserver",
+- ~~ "server:dev": "npm-run-all -p -r webdev sass:watch", ~~
+- ~~ "server:hmr": "npm-run-all -p -r webdev:hmr sass:watch", ~~
+- "server:prod": "npm-run-all -p -r watch:prod prodserver",
+- "server:prod80": "npm-run-all -p -r serve80 watch:prod",
+- "server:universal": "nodemon dist/server/index.js",
+- "debug:build": "node-nightly --inspect --debug-brk node_modules/webpack/bin/webpack.js",
+- "build": "npm run build:prod",
+- ~~ "build:aot": "npm run build:aot:prod", ~~
+- ~~ "build:aot:prod": "npm run clean:dist && npm run sass && webpack", ~~
+- "build:aot:prod:e2e": "npm run clean:dist && npm run sass && webpack",
+- "build:aot:dev": "npm run clean:dist && npm run sass && webpack",
+- "build:dev": "npm run clean:dist && npm run sass && webpack",
+- ~~ "build:dll": "npm run clean:dll && npm run sass && webpack", ~~
+- ~~ "build:prod": "npm run clean:dist && npm run sass && webpack", ~~
+- "build:prod:e2e": "npm run clean:dist && npm run sass && webpack",
+- "build:universal": "npm run build:universal:prod",
+- "build:universal:aot": "npm run build:universal:aot:prod",
+- "build:universal:aot:dev": "npm run clean:dist && npm run sass && webpack",
+- "build:universal:aot:prod": "npm run clean:dist && npm run sass && webpack",
+- "build:universal:aot:prod:e2e": "npm run clean:dist && npm run sass && webpack",
+- "build:universal:dev": "npm run clean:dist && npm run sass && webpack",
+- "build:universal:prod": "npm run clean:dist && npm run sass && webpack",
+- "build:universal:prod:e2e": "npm run clean:dist && npm run sass && webpack",
+- "watch": "npm run watch:dev",
+- "watch:dev": "npm-run-all -p -r \"build:dev -- --watch\" sass:watch",
+- "watch:prod": "npm-run-all -p -r \"build:prod -- --watch\" sass:watch",
+- "watch:universal": "npm-run-all -p -r \"build:universal -- --watch\" sass:watch",
+- "universal": "npm run build:universal && npm run server:universal",
+- "universal:aot": "npm run compile:universal && npm run server:universal",
+- "universal:watch": "npm run build:universal && npm-run-all -p -r watch:universal server:universal"
+
 
 # Original Repo README
 
@@ -56,11 +143,6 @@ yarn start
 * Karma/Jasmine testing
 * Protractor for E2E testing
 
-## Project Goals
-
-* The main goal is to provide an environment where you can have great dev tools and create a production application without worrying about adding a bunch of stuff yourself.
-* The goal of your design should be so that you can easily copy and paste your app folder and your constants file into to a new update of this project and have it still work. Use constants and have proper separation to make upgrades easy. If you have any suggestions on areas where this starter can be designed to make updates more easy, file an issue.
-
 ## Basic scripts
 
 Use `yarn start` for dev server. Default dev port is `3000`.
@@ -84,21 +166,7 @@ Use `yarn run compile` instead, it compiles and builds:aot
 The scripts are set to compile css next to scss because ngc compiler does not support Sass.
 To compile scss, use `yarn run sass`, but many of the scripts will either build or watch scss files.
 
-### Store Log Monitor / Store Logger
 
-In development mode, the store log monitor appears on the right hand of your screen. This allows
-you to view your stored state and manipulate your state history. By default, the monitor is NOT imported
-when you are in production mode. State history is also not saved in production mode.
-
-There is also an option to use store-logger which outputs to the console instead of your application view.
-To set your development mode store logging preference, go to the constant.js file and edit the `STORE_DEV_TOOLS` constant.
-Available options are `monitor | logger | both | none`
-
-### HMR (Hot Module Replacement)
-
-HMR mode allows you to update a particular module without reloading the entire application.
-The current state of your app is also stored in @ngrx/store allowing you to make updates to your
-code without losing your currently stored state.
 
 ### AOT  Don'ts
 
@@ -124,4 +192,8 @@ For e2e tests, use `yarn run e2e`. To run unit test and e2e test at the same tim
 
 ### License
 
-[MIT](https://github.com/qdouble/angular-webpack2-starter/blob/master/LICENSE)
+[MIT](https://github.com/kemalcany/kitecs-angular-starter/blob/master/LICENSE)
+
+### Acknowledgements
+
+- @qdouble for the amazing [angular-webpack2-starter](https://github.com/qdouble/angular-webpack2-starter) starter
