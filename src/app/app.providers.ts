@@ -1,5 +1,5 @@
-import { UserActions } from './user/user.actions';
-import { UserService } from './user/user.service';
+import { UserActions } from './store/user/user.actions';
+import { UserService } from './store/user/user.service';
 
 export const APP_PROVIDERS = [
   UserActions,

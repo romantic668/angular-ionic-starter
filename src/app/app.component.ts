@@ -1,13 +1,61 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { views } from './app-nav-views';
 import { MOBILE } from './services/constants';
+
+export const views: Object[] = [
+  {
+    name: 'Dashboard',
+    icon: 'home',
+    link: ['']
+  },
+  {
+    name: 'Lazy',
+    icon: 'file_download',
+    link: ['lazy']
+  },
+    {
+    name: 'Sync',
+    icon: 'done',
+    link: ['sync']
+  },
+  {
+    name: 'Bad Link',
+    icon: 'error',
+    link: ['wronglink']
+  }
+];
+
 
 @Component({
   selector: 'my-app',
-  styleUrls: ['./app.component.css'],
-  templateUrl: './app.component.html'
+  template: `
+    <md-sidenav-layout fullscreen>
+      <md-sidenav [opened]="!mobile" #sidenav [mode]="sideNavMode">
+        <md-nav-list>
+          <template ngFor let-view [ngForOf]="views" 
+          let-even="even" let-odd="odd" let-rowIndex="index">
+            <a md-list-item [routerLink]="view.link" routerLinkActive="active-link"
+            (click)="mobile ? sidenav.close() : {}">
+              <md-icon md-list-icon>{{view.icon}}</md-icon>
+              <span md-line>{{view.name}}</span>
+              <span md-line class="secondary">{{view.description}}</span>
+            </a>
+          </template>
+        </md-nav-list>
+      </md-sidenav>
+      <md-toolbar color="primary">
+        <button md-icon-button (click)="sidenav.toggle()">
+          <md-icon>menu</md-icon>
+        </button> Angular Starter App
+      </md-toolbar>
+      <md-card>
+        <router-outlet (activate)="activateEvent($event)"
+        (deactivate)="deactivateEvent($event)"></router-outlet>
+      </md-card>
+    </md-sidenav-layout>
+    <my-store-devtools *ngIf="showMonitor"></my-store-devtools>  
+  `
 })
 export class AppComponent {
   showMonitor = (ENV === 'development' && !AOT &&

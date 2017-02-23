@@ -21,7 +21,7 @@
     "protractor": "protractor",
     "pree2e:only": "npm run webdriver:update -- --standalone",
     "e2e": "npm run sass && npm-run-all -p -r e2e:server e2e:only",
-    "e2e:testall": "npm run e2e:jit && npm run e2e:aot && npm run e2e:universal && npm run e2e:universal:aot",
+    "e2e:testall": "npm run e2e:jit && npm run e2e:aot",
     "e2e:aot": "npm run compile:e2e && npm run e2e",
     "e2e:jit": "npm run build:prod:e2e && npm run e2e",
     "e2e:universal": "npm run build:universal:prod:e2e && npm-run-all -p -r server:universal e2e:only:universal",
