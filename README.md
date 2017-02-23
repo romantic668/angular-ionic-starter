@@ -1,9 +1,12 @@
 # KiteCS Angular Starter
 
-## Locked Dependencies
+### Locked Dependencies
 - @types/jasmine locked 2.5.41 : Above breaks build
 
-# Original Repo Readme
+### NPM (Yarn) Scripts Checklist
+- Use yarn start for dev server. Default dev port is 3000. &#9989;
+
+# Original Repo README
 
 https://github.com/qdouble/angular-webpack2-starter.git
 
