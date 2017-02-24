@@ -17,7 +17,7 @@ import { User } from '../store/user/user.model';
     </header>
     <section>
       <form [formGroup]="form" (ngSubmit)="submitState()" autocomplete="off">
-        <md-input formControlName="name" [placeholder]="nameLabel"></md-input><br>
+        <input formControlName="name"><br>
         <button md-raised-button color="primary">Update store</button>
         <button md-raised-button color="accent" type="button"
         (click)="clearName()">Clear name</button>

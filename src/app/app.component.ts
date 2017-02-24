@@ -30,7 +30,7 @@ export const views: Object[] = [
 @Component({
   selector: 'my-app',
   template: `
-    <md-sidenav-layout fullscreen>
+    <md-sidenav-container fullscreen>
       <md-sidenav [opened]="!mobile" #sidenav [mode]="sideNavMode">
         <md-nav-list>
           <template ngFor let-view [ngForOf]="views" 
@@ -53,7 +53,7 @@ export const views: Object[] = [
         <router-outlet (activate)="activateEvent($event)"
         (deactivate)="deactivateEvent($event)"></router-outlet>
       </md-card>
-    </md-sidenav-layout>
+    </md-sidenav-container>
     <my-store-devtools *ngIf="showMonitor"></my-store-devtools>  
   `
 })
