@@ -44,10 +44,11 @@ export const views: Object[] = [
           </template>
         </md-nav-list>
       </md-sidenav>
+      <p>Varanre yaaa</p>
       <md-toolbar color="primary">
         <button md-icon-button (click)="sidenav.toggle()">
           <md-icon>menu</md-icon>
-        </button> Angular Starter App Yes
+        </button>
       </md-toolbar>
       <md-card>
         <router-outlet (activate)="activateEvent($event)"
