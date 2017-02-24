@@ -13,6 +13,7 @@
 - yarn run build / yarn run server:prod (This one is a bit weird, keeps refreshing on the server)
 - yarn run universal (ERROR in build)
 - include universal e2e scripts to e2e:testall ==> "e2e:testall": "npm run e2e:jit && npm run e2e:aot && npm run e2e:universal && npm run e2e:universal:aot",
+- nodemon config file is deleted now. Options(flags) need to be arranged on npm script. Original nodemon.json: {"watch": ["dist"],"ext" : "js ts json html"}
 
 ### License
 
