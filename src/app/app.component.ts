@@ -47,7 +47,7 @@ export const views: Object[] = [
       <md-toolbar color="primary">
         <button md-icon-button (click)="sidenav.toggle()">
           <md-icon>menu</md-icon>
-        </button> Angular Starter App
+        </button> Angular Starter App Yes
       </md-toolbar>
       <md-card>
         <router-outlet (activate)="activateEvent($event)"
