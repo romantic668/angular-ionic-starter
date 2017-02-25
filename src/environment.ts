@@ -17,8 +17,14 @@ if ('production' === ENV) {
     const appRef = modRef.injector.get(ApplicationRef);
     const cmpRef = appRef.components[0];
 
-    let _ng = (<any>window).ng;
+    // KY
+    // enableDebugTools(cmpRef); moved above _ng declaration to prevent
+    // undefined bug after ng4 update
+    // ng.probe and ng.coreTokens might need to be set before enabling debug tools
+
     enableDebugTools(cmpRef);
+
+    let _ng = (<any>window).ng;
     (<any>window).ng.probe = _ng.probe;
     (<any>window).ng.coreTokens = _ng.coreTokens;
     return modRef;

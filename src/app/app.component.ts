@@ -33,7 +33,7 @@ export const views: Object[] = [
     <md-sidenav-container fullscreen>
       <md-sidenav [opened]="!mobile" #sidenav [mode]="sideNavMode">
         <md-nav-list>
-          <template ngFor let-view [ngForOf]="views" 
+          <ng-template ngFor let-view [ngForOf]="views" 
           let-even="even" let-odd="odd" let-rowIndex="index">
             <a md-list-item [routerLink]="view.link" routerLinkActive="active-link"
             (click)="mobile ? sidenav.close() : {}">
@@ -41,10 +41,10 @@ export const views: Object[] = [
               <span md-line>{{view.name}}</span>
               <span md-line class="secondary">{{view.description}}</span>
             </a>
-          </template>
+          </ng-template>
         </md-nav-list>
       </md-sidenav>
-      <p>Maok yaaa</p>
+      <p>Zamzuk yaaa</p>
       <md-toolbar color="primary">
         <button md-icon-button (click)="sidenav.toggle()">
           <md-icon>menu</md-icon>
