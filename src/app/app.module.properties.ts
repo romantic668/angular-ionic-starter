@@ -10,9 +10,24 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { useLogMonitor } from '@ngrx/store-log-monitor';
 
 import { routes } from './app.routing';
-import { rootReducer } from './reducers';
-import { StoreDevToolsModule } from './features/store-devtools.module';
-import { UserEffects } from './user/user.effects';
+import { rootReducer } from './store/reducers';
+import { StoreDevToolsModule } from './components/store-devtools/store-devtools.module';
+import { UserEffects } from './store/user/user.effects';
+
+import { DashboardPage } from './pages/dashboard.page';
+import { NotFoundPage } from './pages/not-found.page';
+
+import { UserActions } from './store/user/user.actions';
+import { UserService } from './store/user/user.service';
+
+export const APP_DECLARATIONS = [
+  DashboardPage,
+  NotFoundPage
+];
+
+export const APP_ENTRY_COMPONENTS = [
+
+];
 
 const STORE_DEV_TOOLS_IMPORTS = [];
 if (ENV === 'development' && !AOT &&
@@ -37,4 +52,10 @@ export const APP_IMPORTS = [
   STORE_DEV_TOOLS_IMPORTS,
   StoreDevToolsModule
 ];
+
+export const APP_PROVIDERS = [
+  UserActions,
+  UserService
+];
+
 

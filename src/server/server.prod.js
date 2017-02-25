@@ -3,18 +3,18 @@ const compression = require('compression')
 const express = require('express'),
 path = require('path');
 
-const E2E_PORT = require('./constants').E2E_PORT;
-const HOST = require('./constants').HOST;
-const PROD_PORT = require('./constants').PROD_PORT;
+const E2E_PORT = require('../../constants').E2E_PORT;
+const HOST = require('../../constants').HOST;
+const PROD_PORT = require('../../constants').PROD_PORT;
 
 const app = express();
-const ROOT = path.join(path.resolve(__dirname, '..'));
+const ROOT = path.join(path.resolve(__dirname, '../..'));
 
 app.use(compression());
 app.use(express.static('dist/client'));
 
 const renderIndex = (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'dist/client/index.html'));
+  res.sendFile(path.resolve(__dirname, '../../dist/client/index.html'));
 }
 
 app.get('/*', renderIndex);

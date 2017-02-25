@@ -19,7 +19,7 @@
     "compiled",
     "src/**/*.e2e.ts",
     "src/**/*.spec.ts",
-    "src/server.ts",
+    "src/server/server.ts",
     "src/main.browser.ts",
     "src/main.browser.aot.ts",
     "src/main.browser.universal.aot.ts",

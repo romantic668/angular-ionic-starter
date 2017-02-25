@@ -19,7 +19,7 @@ const {
   DllPlugin,
   DllReferencePlugin,
   ProgressPlugin,
-  NoErrorsPlugin
+  NoEmitOnErrorsPlugin
 } = require('webpack');
 
 const CompressionPlugin = require('compression-webpack-plugin');
@@ -101,8 +101,7 @@ const COPY_FOLDERS = [
   { from: 'src/assets', to: 'assets' },
   { from: 'node_modules/hammerjs/hammer.min.js' },
   { from: 'node_modules/hammerjs/hammer.min.js.map' },
-  { from: 'src/app/main.css' },
-  { from: 'src/app/styles.css' },
+  // { from: 'src/app/theme/_css/main.css' },
   ...MY_COPY_FOLDERS
 ];
 
@@ -184,7 +183,7 @@ const commonConfig = function webpackConfig(): WebpackConfig {
 
   if (PROD) {
     config.plugins.push(
-      new NoErrorsPlugin(),
+      new NoEmitOnErrorsPlugin(),
       new UglifyJsPlugin({
         beautify: false,
         comments: false

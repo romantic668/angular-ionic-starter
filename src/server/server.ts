@@ -1,6 +1,6 @@
 // the polyfills must be the first thing imported in node.js
 import './polyfills.server';
-import './rxjs.imports';
+import '../rxjs.imports';
 import 'angular2-universal-polyfills';
 
 import * as path from 'path';
@@ -15,9 +15,9 @@ import { enableProdMode } from '@angular/core';
 import { createEngine } from 'angular2-express-engine';
 
 // App
-import { AppModule } from './app/app.module.universal.node';
+import { AppModule } from '../app/app.module.universal.node';
 import { routes } from './server.routes';
-import { HOST, UNIVERSAL_PORT } from '../constants';
+import { HOST, UNIVERSAL_PORT } from '../../constants';
 
 // enable prod for faster renders
 enableProdMode();
