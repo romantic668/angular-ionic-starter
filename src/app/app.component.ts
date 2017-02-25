@@ -44,7 +44,7 @@ export const views: Object[] = [
           </template>
         </md-nav-list>
       </md-sidenav>
-      <p>Varanre yaaa</p>
+      <p>Maok yaaa</p>
       <md-toolbar color="primary">
         <button md-icon-button (click)="sidenav.toggle()">
           <md-icon>menu</md-icon>

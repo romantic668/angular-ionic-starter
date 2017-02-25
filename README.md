@@ -1,8 +1,5 @@
 # KiteCS Angular Starter
 
-### Locked Dependencies
-- @types/jasmine locked 2.5.41 : Above breaks build
-
 ### Package Upgrade Scripts Checklist
 - yarn start / yarn run start:hmr (Development)
 - yarn run compile / yarn run prodserver (Prod)
@@ -16,10 +13,12 @@
 - nodemon config file is deleted now. Options(flags) need to be arranged on npm script. Original nodemon.json: {"watch": ["dist"],"ext" : "js ts json html"}
 - Update yarn locally and import yarn.lock 
 
+### Locked Dependencies
+
 ### License
 
 [MIT](https://github.com/kemalcany/kitecs-angular-starter/blob/master/LICENSE)
 
 ### Acknowledgements
 
-- @qdouble for the amazing [angular-webpack2-starter](https://github.com/qdouble/angular-webpack2-starter) starter
+- @qdouble and all other contributors for the amazing [angular-webpack2-starter](https://github.com/qdouble/angular-webpack2-starter) starter
