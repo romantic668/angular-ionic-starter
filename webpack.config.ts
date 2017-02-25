@@ -314,7 +314,7 @@ const clientConfig = function webpackConfig(): WebpackConfig {
 
 const serverConfig: WebpackConfig = {
   target: 'node',
-  entry: './src/server',
+  entry: './src/server/server',
   output: {
     filename: 'index.js',
     path: root('dist/server'),

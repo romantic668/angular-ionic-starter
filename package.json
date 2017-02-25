@@ -62,7 +62,7 @@
     "server:hmr": "npm-run-all -p -r webdev:hmr sass:watch",
     "server:prod": "npm-run-all -p -r watch:prod src/server/server.prod",
     "server:prod80": "npm-run-all -p -r serve80 watch:prod",
-    "server:universal": "nodemon --watch dist --exec dist/server/index.js",
+    "server:universal": "nodemon --watch dist --exec node dist/server/index.js",
     "debug:build": "node-nightly --inspect --debug-brk node_modules/webpack/bin/webpack.js",
     "build": "npm run build:prod",
     "build:aot": "npm run build:aot:prod",
