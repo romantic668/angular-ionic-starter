@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <header>
       <h5>
-        This module is being loaded synchronously.
+        This module is being loaded synchronously. Ve iste bu
       </h5>
     </header>  
   `

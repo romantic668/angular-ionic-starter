@@ -12,20 +12,6 @@ import { User } from '../store/user/user.model';
   selector: 'my-dashboard',
   styles: [`#my-logout-button { background: #F44336 }`],
   template: `
-    <header>
-      <h3> Welcome to the Dashboard {{user.name}}!</h3>
-    </header>
-    <section>
-      <form [formGroup]="form" (ngSubmit)="submitState()" autocomplete="off">
-        <input formControlName="name"><br>
-        <button md-raised-button color="primary">Update store</button>
-        <button md-raised-button color="accent" type="button"
-        (click)="clearName()">Clear name</button>
-      </form>
-      <br><br>
-        <button id="my-logout-button" md-raised-button color="accent"
-        (click)="logout()">Logout</button>
-    </section>  
   `
 })
 

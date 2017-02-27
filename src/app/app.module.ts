@@ -4,6 +4,8 @@ import { HttpModule } from '@angular/http';
 
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 
+import { IonicApp, IonicModule } from 'ionic-angular';
+
 import { Store } from '@ngrx/store';
 
 import {
@@ -27,8 +29,10 @@ import { AppState } from './store/reducers';
     APP_IMPORTS,
     BrowserModule,
     HttpModule,
+    IonicModule.forRoot(AppComponent, { locationStrategy: 'path'}),
   ],
-  bootstrap: [AppComponent],
+  // bootstrap: [AppComponent],
+  bootstrap: [IonicApp],
   providers: [APP_PROVIDERS]
 })
 

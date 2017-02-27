@@ -94,6 +94,7 @@ const DLL_VENDORS = [
   'ngrx-store-freeze',
   'ngrx-store-logger',
   'rxjs',
+  'ionic-angular',
   ...MY_VENDOR_DLLS
 ];
 
@@ -101,7 +102,6 @@ const COPY_FOLDERS = [
   { from: 'src/assets', to: 'assets' },
   { from: 'node_modules/hammerjs/hammer.min.js' },
   { from: 'node_modules/hammerjs/hammer.min.js.map' },
-  // { from: 'src/app/theme/_css/main.css' },
   ...MY_COPY_FOLDERS
 ];
 

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { App } from 'ionic-angular';
+
 import { MOBILE } from './services/constants';
 
 export const views: Object[] = [
@@ -28,34 +30,25 @@ export const views: Object[] = [
 
 
 @Component({
-  selector: 'my-app',
+  selector: 'ion-app',
   template: `
-    <md-sidenav-container fullscreen>
-      <md-sidenav [opened]="!mobile" #sidenav [mode]="sideNavMode">
-        <md-nav-list>
-          <ng-template ngFor let-view [ngForOf]="views" 
-          let-even="even" let-odd="odd" let-rowIndex="index">
-            <a md-list-item [routerLink]="view.link" routerLinkActive="active-link"
-            (click)="mobile ? sidenav.close() : {}">
-              <md-icon md-list-icon>{{view.icon}}</md-icon>
-              <span md-line>{{view.name}}</span>
-              <span md-line class="secondary">{{view.description}}</span>
-            </a>
-          </ng-template>
-        </md-nav-list>
-      </md-sidenav>
-      <p>Zamzuk yaaa</p>
-      <md-toolbar color="primary">
-        <button md-icon-button (click)="sidenav.toggle()">
-          <md-icon>menu</md-icon>
-        </button>
-      </md-toolbar>
-      <md-card>
-        <router-outlet (activate)="activateEvent($event)"
-        (deactivate)="deactivateEvent($event)"></router-outlet>
-      </md-card>
-    </md-sidenav-container>
-    <my-store-devtools *ngIf="showMonitor"></my-store-devtools>  
+
+  <ion-header>
+    <ion-navbar>
+      <ion-title>Neden boyle oldu yaaaaaa</ion-title>
+    </ion-navbar>
+  </ion-header>
+    <button ion-button (click)="call()">
+      MACAR Venono (Round)
+  </button> 
+      <ng-template ngFor let-view [ngForOf]="views" let-even="even" let-odd="odd" let-rowIndex="index">
+        <a [routerLink]="view.link" routerLinkActive="active-link" (click)="mobile ? sidenav.close() : {}">
+          <span>{{view.name}}</span>
+        </a>
+      </ng-template>
+
+      <router-outlet (activate)="activateEvent($event)"
+      (deactivate)="deactivateEvent($event)"></router-outlet> 
   `
 })
 export class AppComponent {
@@ -68,7 +61,8 @@ export class AppComponent {
 
   constructor(
     public route: ActivatedRoute,
-    public router: Router
+    public router: Router,
+    private app: App
   ) { }
 
   activateEvent(event) {
@@ -82,4 +76,9 @@ export class AppComponent {
       console.log('Deactivate Event', event);
     }
   }
+
+  call(){
+    console.log("Yaok");
+    console.log(this.app);
+  }  
 }
