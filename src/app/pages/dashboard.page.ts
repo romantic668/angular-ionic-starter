@@ -12,6 +12,7 @@ import { User } from '../store/user/user.model';
   selector: 'my-dashboard',
   styles: [`#my-logout-button { background: #F44336 }`],
   template: `
+    Dashboard burda sen nerdesin
   `
 })
 

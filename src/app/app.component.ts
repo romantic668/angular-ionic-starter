@@ -32,23 +32,34 @@ export const views: Object[] = [
 @Component({
   selector: 'ion-app',
   template: `
-
-  <ion-header>
-    <ion-navbar>
-      <ion-title>Neden boyle oldu yaaaaaa</ion-title>
-    </ion-navbar>
-  </ion-header>
-    <button ion-button (click)="call()">
-      MACAR Venono (Round)
-  </button> 
-      <ng-template ngFor let-view [ngForOf]="views" let-even="even" let-odd="odd" let-rowIndex="index">
-        <a [routerLink]="view.link" routerLinkActive="active-link" (click)="mobile ? sidenav.close() : {}">
-          <span>{{view.name}}</span>
-        </a>
-      </ng-template>
-
-      <router-outlet (activate)="activateEvent($event)"
-      (deactivate)="deactivateEvent($event)"></router-outlet> 
+    <ion-menu [content]="content" swipeEnabled="true">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-item menuClose *ngFor="let view of views">
+            <a [routerLink]="view.link" routerLinkActive="active-link">
+              {{view.name}}
+            </a>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-header>
+      <ion-navbar>
+        <button ion-button menuToggle>
+          <ion-icon name="menu">Menu</ion-icon>
+        </button>
+        <ion-title>Dashboard</ion-title>
+      </ion-navbar>
+    </ion-header>
+    <ion-content padding>
+      <router-outlet #content (activate)="activateEvent($event)"
+      (deactivate)="deactivateEvent($event)"></router-outlet>       
+    </ion-content>
   `
 })
 export class AppComponent {

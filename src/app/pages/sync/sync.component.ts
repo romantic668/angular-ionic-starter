@@ -3,11 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'my-sync',
   template: `
-    <header>
-      <h5>
-        This module is being loaded synchronously. Ve iste bu
-      </h5>
-    </header>  
+    <ion-content padding>
+      Sync Component is here ya pleasseee
+    </ion-content>  
   `
 })
 
