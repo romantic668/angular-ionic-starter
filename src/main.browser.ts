@@ -7,8 +7,19 @@ import { bootloader } from '@angularclass/hmr';
 import { AppModule } from './app/app.module';
 import { decorateModuleRef } from './environment';
 
+console.log("Budayi");
+console.log(ENV);
+console.log("================");
+console.log(CORDOVA);
+
 if ('production' === ENV) {
   enableProdMode();
+}
+
+if (CORDOVA) {
+  document.addEventListener('deviceready', () => bootloader(main));
+} else {
+  bootloader(main);
 }
 
 export function main(): Promise<any> {
@@ -20,4 +31,4 @@ export function main(): Promise<any> {
 
 // needed for hmr
 // in prod this is replace for document ready
-bootloader(main);
+// bootloader(main);

@@ -30,6 +30,7 @@ declare var PORT: number;
 declare var STORE_DEV_TOOLS: string;
 declare var System: SystemJS;
 declare var UNIVERSAL: boolean;
+declare var CORDOVA: boolean;
 
 interface SystemJS {
   import: (path?: string) => Promise<any>;
@@ -45,6 +46,7 @@ interface GlobalEnvironment {
   SystemJS: SystemJS;
   System: SystemJS;
   UNIVERSAL;
+  CORDOVA;
 }
 
 interface WebpackModule {

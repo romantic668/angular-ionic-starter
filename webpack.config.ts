@@ -42,6 +42,7 @@ const HMR = hasProcessFlag('hot');
 const PROD = EVENT.includes('prod');
 const WATCH = hasProcessFlag('watch');
 const UNIVERSAL = EVENT.includes('universal');
+const CORDOVA = EVENT.includes('cordova');
 
 let port: number;
 if (!UNIVERSAL) {
@@ -58,6 +59,9 @@ const PORT = port;
 
 console.log('PRODUCTION BUILD: ', PROD);
 console.log('AOT: ', AOT);
+console.log('CORDOVA: ', CORDOVA);
+console.log('------------------------');
+
 if (DEV_SERVER) {
   testDll();
   console.log(`Starting dev server on: http://${HOST}:${PORT}`);
@@ -70,7 +74,8 @@ const CONSTANTS = {
   HOST: JSON.stringify(HOST),
   PORT: PORT,
   STORE_DEV_TOOLS: JSON.stringify(STORE_DEV_TOOLS),
-  UNIVERSAL: UNIVERSAL
+  UNIVERSAL: UNIVERSAL,
+  CORDOVA: CORDOVA
 };
 
 const DLL_VENDORS = [
@@ -162,7 +167,8 @@ const commonConfig = function webpackConfig(): WebpackConfig {
       }),
       new HtmlWebpackPlugin({
         template: 'src/index.html',
-        inject: false
+        inject: false,
+        cordova: CORDOVA
       })
     );
   }
@@ -207,7 +213,6 @@ const commonConfig = function webpackConfig(): WebpackConfig {
   return config;
 } ();
 
-// type definition for WebpackConfig at the bottom
 const clientConfig = function webpackConfig(): WebpackConfig {
 
   let config: WebpackConfig = Object.assign({});
@@ -263,10 +268,17 @@ const clientConfig = function webpackConfig(): WebpackConfig {
   }
 
   if (!DLL) {
-    config.output = {
-      path: root('dist/client'),
-      filename: 'index.js'
-    };
+    if (!CORDOVA) {
+      config.output = {
+        path: root('dist/client'),
+        filename: 'index.js'
+      };
+    } else {
+      config.output = {
+        path: root('cordova/www'),
+        filename: 'index.js'
+      };
+    }
   } else {
     config.output = {
       path: root('dll'),

@@ -25,6 +25,9 @@ debug.log
 # Coverage #
 /coverage/
 
+# Cordova #
+/cordova/
+
 /output/
 /compiled/
 .awcache/
