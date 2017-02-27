@@ -88,8 +88,8 @@ export class AppComponent {
     }
   }
 
-  call(){
-    console.log("Yaok");
+  call() {
+    console.log('Yaok');
     console.log(this.app);
-  }  
+  }
 }

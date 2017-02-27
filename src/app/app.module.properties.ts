@@ -2,6 +2,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IdlePreload, IdlePreloadModule } from '@angularclass/idle-preload';
 import { MaterialModule } from '@angular/material';
+import { APP_BASE_HREF } from '@angular/common';
 
 import { EffectsModule } from '@ngrx/effects';
 import { RouterStoreModule } from '@ngrx/router-store';
@@ -55,7 +56,8 @@ export const APP_IMPORTS = [
 
 export const APP_PROVIDERS = [
   UserActions,
-  UserService
+  UserService,
+  {provide: APP_BASE_HREF, useValue : '/' }
 ];
 
 

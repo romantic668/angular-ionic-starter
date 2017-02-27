@@ -2,8 +2,11 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { APP_BASE_HREF } from '@angular/common';
 
 import { MaterialModule } from '@angular/material';
+
+import { IonicApp, IonicModule } from 'ionic-angular';
 
 import { AppComponent } from './app.component';
 
@@ -22,9 +25,10 @@ describe('App Component', () => {
         MaterialModule.forRoot(),
         ReactiveFormsModule,
         RouterTestingModule.withRoutes(routes),
-        StoreDevToolsModule
+        StoreDevToolsModule,
+        IonicModule.forRoot(AppComponent, { locationStrategy: 'path'})
         ],
-      providers: [],
+      providers: [{provide: APP_BASE_HREF, useValue : '/' }],
       declarations: [AppComponent, DashboardPage, NotFoundPage]
     });
   });
