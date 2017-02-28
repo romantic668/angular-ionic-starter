@@ -2,10 +2,6 @@
 // http://ionicframework.com/docs/v2/theming/
 @import "ionic-angular/themes/ionic.globals";
 
-body{
-    background:maroon;
-}
-
 // Shared Variables
 // --------------------------------------------------
 // To customize the look and feel of this app, you can override
@@ -76,5 +72,4 @@ $ionicons-font-path: "../fonts";
 
 
 // All Ionic components
-
 @import './_ionic';

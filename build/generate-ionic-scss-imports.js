@@ -59,7 +59,7 @@ const files = listFiles('components', '.scss')
   .sort(orderByDirDotsDashesAndName)
   .map(file => path.join(path.dirname(file), path.basename(file, '.scss')));
 
-  let stream = fs.createWriteStream("../../src/app/theme/ionic.scss");
+  let stream = fs.createWriteStream("../../src/app/theme/_ionic.scss");
   stream.once('open', function(fd) {
     let index = 0;
     for (let file of files) {

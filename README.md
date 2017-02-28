@@ -13,6 +13,13 @@
 - nodemon config file is deleted now. Options(flags) need to be arranged on npm script. Original nodemon.json: {"watch": ["dist"],"ext" : "js ts json html"}
 - Update yarn locally and import yarn.lock 
 
+### Known issues
+- Ionic + Angular 4 (both latest versions) have a propblem with change detection that reflects on 
+ngAfterContentInit function not getting triggered in Ionic's MenuToggle directive. Result is a missing css class.
+Workaround: Calling the MenuToggle.ngAfterContentInit method from AppComponent manually via ViewChild
+- _decorateModuleRef under environments.ts is givving an error because of missing probe and coreTokens properties under window.ng property.
+Workaround: Moved the errorous code above but now development mode is not working correctly (ex: reflected in Augury not working)
+
 ### Locked Dependencies
 
 ### License
