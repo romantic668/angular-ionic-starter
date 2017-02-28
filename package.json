@@ -8,8 +8,9 @@
     "url": "git+https://github.com/kemalcany/kitecs-angular-starter.git"
   },
   "scripts": {
-    "postinstall": "npm run postinstall:ionic && npm run sass && npm run build:dll",
+    "postinstall": "npm run postinstall:ionic && npm run sass && npm run build:dll && npm run postinstall:cordova",
     "postinstall:ionic": "node build/generate-ionic-scss-imports.js && node build/copy-ionicons-fonts.js",
+    "postinstall:cordova": "cordova create cordova",
     "rimraf": "rimraf",
     "webdev": "webpack-dev-server",
     "webdev:hmr": "npm run webdev -- --inline --hot",
