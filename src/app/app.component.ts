@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { App } from 'ionic-angular';
+import { MenuToggle } from 'ionic-angular';
 
 import { MOBILE } from './services/constants';
 
@@ -53,7 +53,7 @@ export const views: Object[] = [
         <button ion-button left icon-only menuToggle >
           <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Fikret</ion-title>
+        <ion-title>Dashboard</ion-title>
         <ion-buttons right>
           <button ion-button icon-only (click)="showMore($event)">
             <ion-icon name="more"></ion-icon>
@@ -67,38 +67,30 @@ export const views: Object[] = [
     </ion-content>
   `
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   showMonitor = (ENV === 'development' && !AOT &&
     ['monitor', 'both'].includes(STORE_DEV_TOOLS) // set in constants.js file in project root
   );
   mobile = MOBILE;
   sideNavMode = MOBILE ? 'over' : 'side';
   views = views;
+  @ViewChild(MenuToggle) _menuToggle: MenuToggle;
 
   constructor(
     public route: ActivatedRoute,
-    public router: Router,
-    private app: App
-  ) { }
+    public router: Router
+  ) {}
+
+  ngAfterViewInit() {
+    this._menuToggle.ngAfterContentInit();
+  }
 
   activateEvent(event) {
-    if (ENV === 'development') {
-      console.log('Activate Event:', event);
-    }
+    if (ENV === 'development') console.log('Activate Event:', event);
   }
 
   deactivateEvent(event) {
-    if (ENV === 'development') {
-      console.log('Deactivate Event', event);
-    }
+    if (ENV === 'development') console.log('Deactivate Event', event);
   }
 
-  call() {
-    console.log('Yaok');
-    console.log(this.app);
-  }
-
-  showMore(event) {
-    console.log(event);
-  }
 }

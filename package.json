@@ -55,7 +55,7 @@
     "compile:only": "npm run clean:compile && npm run sass && npm run ngc",
     "compile:watch": "watch-run -i npm run compile:only -p 'src/app/**/*.ts, src/app/**/*.scss' npm run compile:only",
     "sass": "node-sass src/app/theme -o src/assets/css --include-path node_modules --output-style compressed",
-    "sass:watch": "node-sass -w src/app/theme -o src/assets/css --include-path node_modules --output-style compressed",
+    "sass:watch": "node-sass -w -r src/app/theme -o src/assets/css --include-path node_modules --output-style compressed",
     "start": "npm run server:dev",
     "start:hmr": "npm run server:hmr",
     "serve80": "sudo PORT=80 node src/server/prodserver.prod",
