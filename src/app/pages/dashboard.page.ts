@@ -12,7 +12,9 @@ import { User } from '../store/user/user.model';
   selector: 'my-dashboard',
   styles: [`#my-logout-button { background: #F44336 }`],
   template: `
-    Dashboard burda sen nerdesin
+    <button ion-button (click)="call()">
+      Secondary (Round)
+    </button>  
   `
 })
 
@@ -60,4 +62,8 @@ export class DashboardPage implements OnDestroy, OnInit {
   ngOnDestroy() {
     this.destroyed$.next();
   }
+
+  call() {
+    console.log('Yaok');
+  }  
 }

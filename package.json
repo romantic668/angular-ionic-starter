@@ -8,7 +8,7 @@
     "url": "git+https://github.com/kemalcany/kitecs-angular-starter.git"
   },
   "scripts": {
-    "postinstall": "npm run sass && npm run build:dll",
+    "postinstall": "node build/generate-ionic-scss-imports.js && npm run sass && npm run build:dll",
     "rimraf": "rimraf",
     "webdev": "webpack-dev-server",
     "webdev:hmr": "npm run webdev -- --inline --hot",
@@ -44,7 +44,7 @@
     "clean:dist": "npm run rimraf -- dist .awcache",
     "clean:dll": "npm run rimraf -- dll",
     "clean:compile": "npm run rimraf -- \"compiled\" ",
-    "clean:cordova": "npm run rimraf -- cordova/www",    
+    "clean:cordova": "npm run rimraf -- cordova/www",
     "compile": "npm run compile:aot",
     "compile:aot": "npm run sass && npm run clean:compile && npm run ngc && npm run build:aot",
     "compile:e2e": "npm run sass && npm run clean:compile && npm run ngc && npm run build:aot:prod:e2e",
@@ -154,6 +154,7 @@
     "css-loader": "~0.26.2",
     "es6-promise": "~4.0.5",
     "es6-promise-loader": "~1.0.2",
+    "file-loader": "^0.10.1",
     "html-webpack-plugin": "~2.28.0",
     "imports-loader": "~0.7.1",
     "ip": "~1.1.3",

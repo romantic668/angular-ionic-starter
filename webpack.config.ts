@@ -111,7 +111,7 @@ const COPY_FOLDERS = [
 ];
 
 if (!DEV_SERVER) {
-  COPY_FOLDERS.unshift({ from: 'src/index.html' });
+  // COPY_FOLDERS.unshift({ from: 'src/index.ejs' });
 } else {
   COPY_FOLDERS.push({ from: 'dll' });
 }
@@ -139,6 +139,7 @@ const commonConfig = function webpackConfig(): WebpackConfig {
       { test: /\.json$/, loader: 'json-loader' },
       { test: /\.html/, loader: 'raw-loader', exclude: [root('src/index.html')] },
       { test: /\.css$/, loader: 'raw-loader' },
+      { test: /\.(eot|svg|ttf|woff|woff2)(\?v=.*)?$/, loader: 'file-loader?name=fonts/[name].[ext]' },
       ...MY_CLIENT_RULES
     ]
   };
@@ -152,6 +153,13 @@ const commonConfig = function webpackConfig(): WebpackConfig {
     new CheckerPlugin(),
     new DefinePlugin(CONSTANTS),
     new NamedModulesPlugin(),
+    new HtmlWebpackPlugin({
+      // template: 'src/index.html',
+      template: 'src/index.ejs',
+      inject: false,
+      cordova: CORDOVA,
+      prod: PROD
+    }),
     ...MY_CLIENT_PLUGINS
   ];
 
@@ -164,12 +172,15 @@ const commonConfig = function webpackConfig(): WebpackConfig {
       new DllReferencePlugin({
         context: '.',
         manifest: require(`./dll/vendor-manifest.json`)
-      }),
+      })
+      /*
       new HtmlWebpackPlugin({
-        template: 'src/index.html',
-        inject: false,
+        // template: 'src/index.html',
+        template: 'src/index.ejs',
+        //inject: false,
         cordova: CORDOVA
       })
+      */
     );
   }
 

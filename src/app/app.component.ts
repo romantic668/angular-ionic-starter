@@ -50,10 +50,15 @@ export const views: Object[] = [
     </ion-menu>
     <ion-header>
       <ion-navbar>
-        <button ion-button menuToggle>
-          <ion-icon name="menu">Menu</ion-icon>
+        <button ion-button left icon-only menuToggle >
+          <ion-icon name="menu"></ion-icon>
         </button>
         <ion-title>Dashboard</ion-title>
+        <ion-buttons right>
+          <button ion-button icon-only (click)="showMore($event)">
+            <ion-icon name="more"></ion-icon>
+          </button>
+        </ion-buttons>
       </ion-navbar>
     </ion-header>
     <ion-content padding>
@@ -91,5 +96,9 @@ export class AppComponent {
   call() {
     console.log('Yaok');
     console.log(this.app);
+  }
+
+  showMore(event) {
+    console.log(event);
   }
 }

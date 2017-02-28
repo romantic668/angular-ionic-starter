@@ -7,11 +7,6 @@ import { bootloader } from '@angularclass/hmr';
 import { AppModule } from './app/app.module';
 import { decorateModuleRef } from './environment';
 
-console.log("Budayi");
-console.log(ENV);
-console.log("================");
-console.log(CORDOVA);
-
 if ('production' === ENV) {
   enableProdMode();
 }

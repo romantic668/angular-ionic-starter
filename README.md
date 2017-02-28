@@ -3,6 +3,7 @@
 ### Package Upgrade Scripts Checklist
 - yarn start / yarn run start:hmr (Development)
 - yarn run compile / yarn run prodserver (Prod)
+- yarn run build:cordova / cd cordova / cordova build <android> | <ios> (Cordova)
 - yarn test / yarn run e2e:testall (or yarn ci:testall)
 
 ## TODO with NG4
