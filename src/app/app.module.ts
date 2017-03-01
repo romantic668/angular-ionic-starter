@@ -31,7 +31,6 @@ import { AppState } from './store/reducers';
     HttpModule,
     IonicModule.forRoot(AppComponent, { locationStrategy: 'path'})
   ],
-  // bootstrap: [AppComponent],
   bootstrap: [IonicApp],
   providers: [APP_PROVIDERS]
 })

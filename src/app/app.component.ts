@@ -55,7 +55,7 @@ export const views: Object[] = [
         </button>
         <ion-title>Dashboard</ion-title>
         <ion-buttons right>
-          <button ion-button icon-only (click)="showMore($event)">
+          <button ion-button icon-only>
             <ion-icon name="more"></ion-icon>
           </button>
         </ion-buttons>

@@ -1,6 +1,8 @@
 # KiteCS Angular Starter
 
-### Package Upgrade Scripts Checklist
+### Package Upgrade Scripts Checklist.
+- npm run clean / manually delete node_modules
+- npm install
 - yarn start / yarn run start:hmr (Development)
 - yarn run compile / yarn run prodserver (Prod)
 - yarn run build:cordova / cd cordova / cordova build <android> | <ios> (Cordova)

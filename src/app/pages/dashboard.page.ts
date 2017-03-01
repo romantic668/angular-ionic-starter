@@ -65,5 +65,5 @@ export class DashboardPage implements OnDestroy, OnInit {
 
   call() {
     console.log('Yaok');
-  }  
+  }
 }

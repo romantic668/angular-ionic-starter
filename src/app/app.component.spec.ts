@@ -22,12 +22,11 @@ describe('App Component', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        MaterialModule.forRoot(),
         ReactiveFormsModule,
         RouterTestingModule.withRoutes(routes),
         StoreDevToolsModule,
         IonicModule.forRoot(AppComponent, { locationStrategy: 'path'})
-        ],
+      ],
       providers: [{provide: APP_BASE_HREF, useValue : '/' }],
       declarations: [AppComponent, DashboardPage, NotFoundPage]
     });
