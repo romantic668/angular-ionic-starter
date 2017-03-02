@@ -1,13 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'my-store-devtools',
+  selector: 'store-devtools',
   encapsulation: ViewEncapsulation.None,
-  styles: [`
-    md-sidenav-layout {
-      width: 70% !important;
-    }
-  `],
+  styles: [``],
   template: `
     <ngrx-store-log-monitor #storeMonitor
       toggleCommand="ctrl-t" 

@@ -53,7 +53,7 @@ export const views: Object[] = [
         <button ion-button left icon-only menuToggle >
           <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Dashboard</ion-title>
+        <ion-title>Dashboard 1</ion-title>
         <ion-buttons right>
           <button ion-button icon-only>
             <ion-icon name="more"></ion-icon>
@@ -65,14 +65,14 @@ export const views: Object[] = [
       <router-outlet #content (activate)="activateEvent($event)"
       (deactivate)="deactivateEvent($event)"></router-outlet>       
     </ion-content>
+    <store-devtools *ngIf="showMonitor"></store-devtools>
   `
 })
 export class AppComponent implements AfterViewInit {
   showMonitor = (ENV === 'development' && !AOT &&
     ['monitor', 'both'].includes(STORE_DEV_TOOLS) // set in constants.js file in project root
   );
-  mobile = MOBILE;
-  sideNavMode = MOBILE ? 'over' : 'side';
+
   views = views;
   @ViewChild(MenuToggle) _menuToggle: MenuToggle;
 
