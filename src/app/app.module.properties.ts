@@ -1,7 +1,6 @@
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IdlePreload, IdlePreloadModule } from '@angularclass/idle-preload';
-import { MaterialModule } from '@angular/material';
 import { APP_BASE_HREF } from '@angular/common';
 
 import { EffectsModule } from '@ngrx/effects';

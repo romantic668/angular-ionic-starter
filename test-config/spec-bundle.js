@@ -19,7 +19,6 @@ require('core-js/es7/reflect');
 // Typescript emit helpers polyfill
 require('ts-helpers');
 require('./matchers');
-require('hammerjs/hammer');
 require('ionic-angular');
 
 require('zone.js/dist/zone');

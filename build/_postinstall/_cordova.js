@@ -43,6 +43,7 @@ module.exports = {
             exec(`cordova platform add ${platform}`, (error, stdout, stderr) => {
                 if (error) reject(error);
                 console.log(`_postinstall > Cordova: ${platform} has been created`);
+                process.chdir('../');
                 resolve();
             });
         }

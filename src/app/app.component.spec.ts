@@ -4,8 +4,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
-import { MaterialModule } from '@angular/material';
-
 import { IonicApp, IonicModule } from 'ionic-angular';
 
 import { AppComponent } from './app.component';

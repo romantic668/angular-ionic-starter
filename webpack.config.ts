@@ -84,7 +84,6 @@ const DLL_VENDORS = [
   '@angular/core',
   '@angular/forms',
   '@angular/http',
-  '@angular/material',
   '@angular/platform-browser',
   '@angular/platform-browser-dynamic',
   '@angular/platform-server',
@@ -105,8 +104,6 @@ const DLL_VENDORS = [
 
 const COPY_FOLDERS = [
   { from: 'src/assets', to: 'assets' },
-  { from: 'node_modules/hammerjs/hammer.min.js' },
-  { from: 'node_modules/hammerjs/hammer.min.js.map' },
   ...MY_COPY_FOLDERS
 ];
 
@@ -154,7 +151,6 @@ const commonConfig = function webpackConfig(): WebpackConfig {
     new DefinePlugin(CONSTANTS),
     new NamedModulesPlugin(),
     new HtmlWebpackPlugin({
-      // template: 'src/index.html',
       template: 'src/index.ejs',
       inject: false,
       cordova: CORDOVA,
@@ -173,14 +169,6 @@ const commonConfig = function webpackConfig(): WebpackConfig {
         context: '.',
         manifest: require(`./dll/vendor-manifest.json`)
       })
-      /*
-      new HtmlWebpackPlugin({
-        // template: 'src/index.html',
-        template: 'src/index.ejs',
-        //inject: false,
-        cordova: CORDOVA
-      })
-      */
     );
   }
 
@@ -345,12 +333,13 @@ const serverConfig: WebpackConfig = {
   },
   module: {
     rules: [
-      { test: /angular2-material/, loader: 'imports-loader?window=>global' },
+      //{ test: /angular2-material/, loader: 'imports-loader?window=>global' },
       ...MY_SERVER_RULES
     ],
   },
   externals: includeClientPackages([
     // include these client packages so we can transform their source with webpack loaders
+    /*
     '@angular2-material/button',
     '@angular2-material/card',
     '@angular2-material/checkbox',
@@ -369,6 +358,7 @@ const serverConfig: WebpackConfig = {
     '@angular2-material/tabs',
     '@angular2-material/toolbar',
     '@angular2-material/tooltip',
+    */
     ...MY_SERVER_INCLUDE_CLIENT_PACKAGES
   ]),
   node: {
