@@ -143,8 +143,10 @@ const commonConfig = function webpackConfig(): WebpackConfig {
 
   config.plugins = [
     new ContextReplacementPlugin(
-      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-      root('./src')
+      ///angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+      /angular(\\|\/)core(\\|\/)@angular(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+      root('./src'),
+      {} // your Angular Async Route paths relative to this root directory
     ),
     new ProgressPlugin(),
     new CheckerPlugin(),
@@ -204,7 +206,7 @@ const commonConfig = function webpackConfig(): WebpackConfig {
     );
     if (!E2E && !WATCH && !UNIVERSAL) {
       config.plugins.push(
-        new BundleAnalyzerPlugin({analyzerPort: 5000})
+        // new BundleAnalyzerPlugin({analyzerPort: 5000})
       );
     }
   }

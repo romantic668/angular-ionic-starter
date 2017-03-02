@@ -133,7 +133,12 @@ module.exports = {
        * See: https://github.com/deepsweet/istanbul-instrumenter-loader
        */
       {
-        test: /\.(js|ts)$/, loader: 'istanbul-instrumenter-loader',
+        test: /\.(js|ts)$/,
+        //loader: 'istanbul-instrumenter-loader',
+        loaders: [
+          'istanbul-instrumenter-loader',
+          //'karma-remap-istanbul'
+        ],
         enforce: 'post',
         include: root('src'),
         exclude: [
@@ -152,8 +157,9 @@ module.exports = {
    */
   plugins: [
     new webpack.ContextReplacementPlugin(
-      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-      root('./src')
+      /angular(\\|\/)core(\\|\/)@angular(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+      root('./src'),
+      {} // your Angular Async Route paths relative to this root directory
     ),
     /**
      * Plugin: DefinePlugin

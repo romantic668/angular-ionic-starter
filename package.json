@@ -8,7 +8,8 @@
     "url": "git+https://github.com/kitecs/angular-ionic-starter.git"
   },
   "scripts": {
-    "postinstall": "npm run sass && npm run build:dll && node build/_postinstall",
+    "postinstall": "node build/_postinstall",
+    "postinsta-old": "npm run sass && npm run build:dll && node build/_postinstall",
     "rimraf": "rimraf",
     "webdev": "webpack-dev-server",
     "webdev:hmr": "npm run webdev -- --inline --hot",
@@ -36,6 +37,7 @@
     "test:once": "karma start",
     "test:once:ci": "karma start",
     "test": "karma start",
+    "coverage": "coveralls < ./coverage/coverage.json",
     "ci": "npm run e2e:jit && npm run test:once:ci",
     "ci:testall": "npm run e2e:testall && npm run test:once:ci",
     "tslint": "node node_modules/tslint/bin/tslint",
@@ -44,6 +46,7 @@
     "clean:dist": "npm run rimraf -- dist .awcache",
     "clean:dll": "npm run rimraf -- dll",
     "clean:compile": "npm run rimraf -- \"compiled\" ",
+    "clean:coverage": "npm run rimraf -- \"coverage\" ",
     "clean:cordova": "npm run rimraf -- cordova/www",
     "compile": "npm run compile:aot",
     "compile:aot": "npm run sass && npm run clean:compile && npm run ngc && npm run build:aot",
@@ -150,6 +153,7 @@
     "compression-webpack-plugin": "~0.3.1",
     "copy-webpack-plugin": "~4.0.0",
     "cordova": "^6.5.0",
+    "coveralls": "^2.11.16",
     "css-loader": "~0.26.2",
     "es6-promise": "~4.0.5",
     "es6-promise-loader": "~1.0.2",
@@ -164,10 +168,12 @@
     "karma": "~1.5.0",
     "karma-chrome-launcher": "~2.0.0",
     "karma-coverage": "~1.1.1",
+    "karma-firefox-launcher": "^1.0.0",
     "karma-jasmine": "~1.1.0",
     "karma-mocha-reporter": "~2.2.0",
     "karma-phantomjs-launcher": "~1.0.2",
     "karma-remap-coverage": "~0.1.4",
+    "karma-remap-istanbul": "^0.6.0",
     "karma-sourcemap-loader": "~0.3.7",
     "karma-webpack": "~2.0.2",
     "node-sass": "~4.5.0",
@@ -175,11 +181,13 @@
     "npm-run-all": "~4.0.0",
     "phantomjs-polyfill": "~0.0.2",
     "phantomjs-prebuilt": "~2.1.13",
-    "protractor": "~5.1.1",
+    "protractor": "5.0.0",
     "raw-loader": "~0.5.1",
     "rimraf": "~2.6.1",
+    "sass-loader": "^6.0.2",
     "source-map-loader": "~0.1.5",
     "string-replace-loader": "~1.0.5",
+    "style-loader": "^0.13.2",
     "to-string-loader": "~1.1.5",
     "ts-helpers": "~1.1.1",
     "ts-node": "~2.1.0",
@@ -192,6 +200,11 @@
     "webpack-dev-middleware": "~1.10.1",
     "webpack-dev-server": "2.4.1",
     "webpack-merge": "~3.0.0"
+  },
+  "greenkeeper": {
+    "ignore": [
+      "protractor"
+    ]
   },
   "license": "MIT",
   "bugs": {

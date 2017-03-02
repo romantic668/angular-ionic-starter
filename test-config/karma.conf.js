@@ -45,9 +45,15 @@ module.exports = function(config) {
 
     remapCoverageReporter: {
       'text-summary': null,
-      json: './coverage/coverage.json',
-      html: './coverage/html'
+      'json': './coverage/coverage.json',
+      'html': './coverage/html',
     },
+
+    remapIstanbulReporter: {
+      reports: {
+        lcovonly: './coverage/lcov.info'
+      }
+    },    
 
     // Webpack please don't spam the console when running in karma!
     webpackServer: { noInfo: true },
@@ -58,7 +64,7 @@ module.exports = function(config) {
      * possible values: 'dots', 'progress'
      * available reporters: https://npmjs.org/browse/keyword/karma-reporter
      */
-    reporters: [ 'mocha', 'coverage', 'remap-coverage' ],
+    reporters: [ 'mocha', 'coverage', 'remap-coverage', 'karma-remap-istanbul' ],
 
     // web server port
     port: 9876,
@@ -82,7 +88,7 @@ module.exports = function(config) {
     browsers: [
       'Chrome'
     ],
-
+   
     customLaunchers: {
       Chrome_travis_ci: {
         base: 'Chrome',

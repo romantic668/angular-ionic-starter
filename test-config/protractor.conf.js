@@ -29,7 +29,8 @@ exports.config = {
   directConnect: true,
 
   capabilities: {
-    'browserName': 'chrome',
+    'browserName': 'firefox',
+    'marionette': false,
     'chromeOptions': {
       'args': ['show-fps-counter=true']
     }

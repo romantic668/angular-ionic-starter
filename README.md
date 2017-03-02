@@ -23,6 +23,8 @@ Workaround: Calling the MenuToggle.ngAfterContentInit method from AppComponent m
 Workaround: Moved the errorous code above but now development mode is not working correctly (ex: reflected in Augury not working)
 
 ### Locked Dependencies
+- protractor: locked to 5.0.0 (on 02/03/17 the latest version was 5.1.1) : Protractor above 5.0.0 doesnt work with firefox
+browser on Travis. For firefox, a flag marionette:false also needs to be set to use legacy Firefox version (<v48) (works ok on Windows dev machine)
 
 ### License
 
@@ -30,5 +32,6 @@ Workaround: Moved the errorous code above but now development mode is not workin
 
 ### Acknowledgements
 
-- @qdouble and all other contributors for the amazing [angular-webpack2-starter](https://github.com/qdouble/angular-webpack2-starter) starter
+- @qdouble for the amazing [angular-webpack2-starter](https://github.com/qdouble/angular-webpack2-starter) starter, especially the Universal parts
 - @mirkonasato for the inspiration on how to link Ionic (& Cordova) to Webpack [ionic2-webpack2-start](https://github.com/mirkonasato/ionic2-webpack2-starter)
+- @angularclass for creating and keeping up to date the best Angular starter. Awesome job [angular-webpack2-starter](https://github.com/AngularClass/angular2-webpack-starter) starter

@@ -48,12 +48,12 @@ export const views: Object[] = [
         </ion-list>
       </ion-content>
     </ion-menu>
-    <ion-header>
+    <ion-header [ngClass]="screenWidth">
       <ion-navbar>
         <button ion-button left icon-only menuToggle >
           <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Dashboard 1</ion-title>
+        <ion-title>Dashboard</ion-title>
         <ion-buttons right>
           <button ion-button icon-only>
             <ion-icon name="more"></ion-icon>
@@ -61,10 +61,10 @@ export const views: Object[] = [
         </ion-buttons>
       </ion-navbar>
     </ion-header>
-    <ion-content padding>
+    <ion-content padding [ngClass]="screenWidth">
       <router-outlet #content (activate)="activateEvent($event)"
       (deactivate)="deactivateEvent($event)"></router-outlet>       
-    </ion-content>
+    </ion-content>    
     <store-devtools *ngIf="showMonitor"></store-devtools>
   `
 })
@@ -73,13 +73,19 @@ export class AppComponent implements AfterViewInit {
     ['monitor', 'both'].includes(STORE_DEV_TOOLS) // set in constants.js file in project root
   );
 
+  screenWidth = 'fullscreen';
+
   views = views;
   @ViewChild(MenuToggle) _menuToggle: MenuToggle;
 
   constructor(
     public route: ActivatedRoute,
     public router: Router
-  ) {}
+  ) {
+    ( this.showMonitor ?
+      this.screenWidth = 'width-adjusted-screen' :
+      this.screenWidth = 'fullscreen');
+  }
 
   ngAfterViewInit() {
     this._menuToggle.ngAfterContentInit();
