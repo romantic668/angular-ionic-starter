@@ -1,3 +1,4 @@
+/*
 import './polyfills.browser';
 import './rxjs.imports';
 
@@ -19,3 +20,4 @@ export function bootstrapDomReady() {
 }
 
 bootstrapDomReady();
+*/
