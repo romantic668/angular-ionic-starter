@@ -1,6 +1,7 @@
 # KiteCS Angular Starter
 
 [![Build Status](https://travis-ci.org/kitecs/angular-ionic-starter.svg?branch=master)](https://travis-ci.org/kitecs/angular-ionic-starter)
+[![Coverage Status](https://coveralls.io/repos/github/kitecs/angular-ionic-starter/badge.svg?branch=master)](https://coveralls.io/github/kitecs/angular-ionic-starter?branch=master)
 
 ### Package Upgrade Scripts Checklist.
 - npm cache clean / npm run clean / manually delete node_modules
