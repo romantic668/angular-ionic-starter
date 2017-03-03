@@ -143,11 +143,20 @@ const commonConfig = function webpackConfig(): WebpackConfig {
 
   config.plugins = [
     new ContextReplacementPlugin(
+      /angular(\\|\/)core(\\|\/)@angular/,
+      root('src'), // location of your src
+      {
+        // your Angular Async Route paths relative to this root directory
+      }
+    ),
+    /*
+    new ContextReplacementPlugin(
       ///angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
       /angular(\\|\/)core(\\|\/)@angular(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
       root('./src'),
       {} // your Angular Async Route paths relative to this root directory
     ),
+    */
     new ProgressPlugin(),
     new CheckerPlugin(),
     new DefinePlugin(CONSTANTS),

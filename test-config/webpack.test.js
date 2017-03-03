@@ -136,8 +136,8 @@ module.exports = {
         test: /\.(js|ts)$/,
         //loader: 'istanbul-instrumenter-loader',
         loaders: [
-          'istanbul-instrumenter-loader',
-          //'karma-remap-istanbul'
+          //'karma-remap-istanbul',
+          'istanbul-instrumenter-loader'
         ],
         enforce: 'post',
         include: root('src'),
@@ -157,10 +157,19 @@ module.exports = {
    */
   plugins: [
     new webpack.ContextReplacementPlugin(
+      /angular(\\|\/)core(\\|\/)@angular/,
+      root('src'), // location of your src
+      {
+        // your Angular Async Route paths relative to this root directory
+      }
+    ),
+    /*    
+    new webpack.ContextReplacementPlugin(
       /angular(\\|\/)core(\\|\/)@angular(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
       root('./src'),
       {} // your Angular Async Route paths relative to this root directory
     ),
+    */
     /**
      * Plugin: DefinePlugin
      * Description: Define free variables.
