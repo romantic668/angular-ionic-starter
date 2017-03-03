@@ -8,7 +8,7 @@
     "url": "git+https://github.com/kitecs/angular-ionic-starter.git"
   },
   "scripts": {
-    "postinstall": "node build/_postinstall && npm run build:dll",
+    "postinstall": "node build/_postinstall && npm run compile",
     "rimraf": "rimraf",
     "webdev": "webpack-dev-server",
     "webdev:hmr": "npm run webdev -- --inline --hot",
@@ -57,7 +57,6 @@
     "compile:watch": "watch-run -i npm run compile:only -p 'src/app/**/*.ts, src/app/**/*.scss' npm run compile:only",
     "sass": "node-sass src/app/theme -o src/assets/css --include-path node_modules --output-style compressed -q",
     "sass:watch": "nodemon -e scss -x npm run sass",
-    "prestart": "npm run compile",
     "start": "node src/server/server.prod",
     "start:old": "npm run server:dev",
     "start:hmr": "npm run server:hmr",
