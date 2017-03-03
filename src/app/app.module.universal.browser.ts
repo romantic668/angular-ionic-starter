@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-//import { UniversalModule } from 'angular2-universal';
+import { UniversalModule } from 'angular2-universal';
 
 import {
   APP_DECLARATIONS,
@@ -19,7 +19,7 @@ import { AppComponent } from './app.component';
   entryComponents: [APP_ENTRY_COMPONENTS],
   imports: [
     APP_IMPORTS,
-//    UniversalModule // NodeModule, NodeHttpModule, and NodeJsonpModule are included
+    UniversalModule // NodeModule, NodeHttpModule, and NodeJsonpModule are included
   ],
   bootstrap: [AppComponent],
   providers: [APP_PROVIDERS]

@@ -1,7 +1,7 @@
 // the polyfills must be the first thing imported in node.js
 import './polyfills.server';
 import '../rxjs.imports';
-// import 'angular2-universal-polyfills';
+import 'angular2-universal-polyfills';
 
 import * as path from 'path';
 import * as express from 'express';

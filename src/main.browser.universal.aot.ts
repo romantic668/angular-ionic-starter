@@ -1,4 +1,3 @@
-/*
 import './polyfills.browser.aot';
 import './rxjs.imports';
 
@@ -22,4 +21,3 @@ export function bootstrapDomReady() {
 }
 
 bootstrapDomReady();
-*/
