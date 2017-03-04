@@ -19,8 +19,11 @@ const {
   DllPlugin,
   DllReferencePlugin,
   ProgressPlugin,
-  NoEmitOnErrorsPlugin
+  NoEmitOnErrorsPlugin,
+  LoaderOptionsPlugin
 } = require('webpack');
+
+const autoprefixer = require('autoprefixer');
 
 const CompressionPlugin = require('compression-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -135,7 +138,10 @@ const commonConfig = function webpackConfig(): WebpackConfig {
       },
       { test: /\.json$/, loader: 'json-loader' },
       { test: /\.html/, loader: 'raw-loader', exclude: [root('src/index.html')] },
-      { test: /\.css$/, loader: 'raw-loader' },
+      // { test: /\.css$/, loader: 'raw-loader' },
+      // { test: /\.scss$/, exclude: root('src/app/theme'), loader: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'] },
+      // { test: /\.scss$/, include: root('src/app/theme'), loader: ['raw-loader', 'postcss-loader', 'sass-loader'] },
+      { test: /\.scss$/, loader: ['style-loader', 'raw-loader', 'postcss-loader', 'sass-loader'] },
       { test: /\.(eot|svg|ttf|woff|woff2)(\?v=.*)?$/, loader: 'file-loader?name=fonts/[name].[ext]' },
       ...MY_CLIENT_RULES
     ]
@@ -166,6 +172,26 @@ const commonConfig = function webpackConfig(): WebpackConfig {
       inject: false,
       cordova: CORDOVA,
       prod: PROD
+    }),
+    new LoaderOptionsPlugin({
+      options: {
+        resolve: {
+          // see https://github.com/TypeStrong/ts-loader/issues/283#issuecomment-249414784
+        },
+        postcss: [
+          autoprefixer({
+            // taken from https://github.com/driftyco/ionic-app-scripts/blob/master/config/sass.config.js
+            browsers: [
+              'last 2 versions',
+              'iOS >= 8',
+              'Android >= 4.4',
+              'Explorer >= 11',
+              'ExplorerMobile >= 11'
+            ],
+            cascade: false
+          })
+        ]
+      }
     }),
     ...MY_CLIENT_PLUGINS
   ];
@@ -280,6 +306,7 @@ const clientConfig = function webpackConfig(): WebpackConfig {
   if (!DLL) {
     if (!CORDOVA) {
       config.output = {
+        publicPath: "http://localhost:8080/",
         path: root('dist/client'),
         filename: 'index.js'
       };

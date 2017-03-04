@@ -1,5 +1,10 @@
 import './polyfills.browser.aot';
 import './rxjs.imports';
+
+import './app/theme/_ionic.scss';
+import './app/theme/_variables.scss';
+import './app/theme/main.scss';
+
 declare var ENV: string;
 
 import { enableProdMode } from '@angular/core';
