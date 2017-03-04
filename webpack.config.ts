@@ -23,6 +23,7 @@ const {
   LoaderOptionsPlugin
 } = require('webpack');
 
+const path = require('path');
 const autoprefixer = require('autoprefixer');
 
 const CompressionPlugin = require('compression-webpack-plugin');
@@ -101,7 +102,7 @@ const DLL_VENDORS = [
   'ngrx-store-freeze',
   'ngrx-store-logger',
   'rxjs',
-  'ionic-angular',
+  //'ionic-angular',
   ...MY_VENDOR_DLLS
 ];
 
@@ -121,11 +122,20 @@ const commonConfig = function webpackConfig(): WebpackConfig {
 
   config.module = {
     rules: [
+        //{ test: /\.ts$/, loader: ['ts-loader', 'angular2-template-loader']},
+        { test: /\.js$/, loader: 'source-map-loader', exclude: [EXCLUDE_SOURCE_MAPS]},
+        { test: /\.ts$/, loader: ['@angularclass/hmr-loader', 'awesome-typescript-loader?{configFileName: "tsconfig.webpack.json"}', 'angular2-template-loader', 'angular-router-loader?loader=system&genDir=compiled&aot=' + AOT]},
+        //{ test: /\.html$/, loader: 'raw-loader' },
+        { test: /\.scss$/, exclude: path.resolve('src/app'), loader: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'] },
+        { test: /\.scss$/, include: path.resolve('src/app'), loader: ['raw-loader', 'postcss-loader', 'sass-loader'] },
+        { test: /\.(eot|svg|ttf|woff|woff2)(\?v=.*)?$/, loader: 'file-loader?name=fonts/[name].[ext]' }
+      /*
       {
         test: /\.js$/,
         loader: 'source-map-loader',
         exclude: [EXCLUDE_SOURCE_MAPS]
       },
+      
       {
         test: /\.ts$/,
         loaders: [
@@ -137,13 +147,15 @@ const commonConfig = function webpackConfig(): WebpackConfig {
         exclude: [/\.(spec|e2e|d)\.ts$/]
       },
       { test: /\.json$/, loader: 'json-loader' },
-      { test: /\.html/, loader: 'raw-loader', exclude: [root('src/index.html')] },
+      // { test: /\.html/, loader: 'raw-loader', exclude: [root('src/index.html')] },
+      { test: /\.scss$/, loader: ['style-loader', 'raw-loader', 'postcss-loader', 'sass-loader'] },
       // { test: /\.css$/, loader: 'raw-loader' },
       // { test: /\.scss$/, exclude: root('src/app/theme'), loader: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'] },
-      // { test: /\.scss$/, include: root('src/app/theme'), loader: ['raw-loader', 'postcss-loader', 'sass-loader'] },
-      { test: /\.scss$/, loader: ['style-loader', 'raw-loader', 'postcss-loader', 'sass-loader'] },
-      { test: /\.(eot|svg|ttf|woff|woff2)(\?v=.*)?$/, loader: 'file-loader?name=fonts/[name].[ext]' },
-      ...MY_CLIENT_RULES
+      // { test: /\.scss$/, exclude: path.resolve('src/app/theme'), loader: ['style-loader', 'raw-loader', 'postcss-loader', 'sass-loader'] },
+      // { test: /\.scss$/, include: path.resolve('src/app/theme'), loader: ['raw-loader', 'postcss-loader', 'sass-loader'] },
+      { test: /\.(eot|svg|ttf|woff|woff2)(\?v=.*)?$/, loader: 'file-loader?name=fonts/[name].[ext]&publicPath=assets/foo/&outputPath=app/amcik/' },
+      */
+      // ...MY_CLIENT_RULES
     ]
   };
 
@@ -306,7 +318,7 @@ const clientConfig = function webpackConfig(): WebpackConfig {
   if (!DLL) {
     if (!CORDOVA) {
       config.output = {
-        publicPath: "http://localhost:8080/",
+        //publicPath: 'http://localhost:3000/',
         path: root('dist/client'),
         filename: 'index.js'
       };

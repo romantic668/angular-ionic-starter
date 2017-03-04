@@ -1,9 +1,7 @@
+import './theme/variables.scss';
+import './theme/main.scss';
 import './polyfills.browser';
 import './rxjs.imports';
-
-import './app/theme/_variables.scss';
-import './app/theme/_ionic.scss';
-import './app/theme/main.scss';
 
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';

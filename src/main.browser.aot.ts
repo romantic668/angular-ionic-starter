@@ -1,9 +1,8 @@
+import './theme/variables.scss';
+import './theme/main.scss';
+
 import './polyfills.browser.aot';
 import './rxjs.imports';
-
-import './app/theme/_ionic.scss';
-import './app/theme/_variables.scss';
-import './app/theme/main.scss';
 
 declare var ENV: string;
 
@@ -25,3 +24,4 @@ export function bootstrapDomReady() {
 }
 
 bootstrapDomReady();
+

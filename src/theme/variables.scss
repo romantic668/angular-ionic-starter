@@ -1,6 +1,7 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/v2/theming/
-// @import "ionic-angular/themes/ionic.globals";
+@import "~ionic-angular/themes/ionic.globals";
+
 
 // Shared Variables
 // --------------------------------------------------
@@ -59,7 +60,7 @@ $colors: (
 // so that the above variables are used and Ionic's
 // default are overridden.
 
-// @import "ionic-angular/themes/ionic.theme.default";
+@import "~ionic-angular/themes/ionic.theme.default";
 
 
 // Ionicons
@@ -67,9 +68,9 @@ $colors: (
 // The premium icon font for Ionic. For more info, please see:
 // http://ionicframework.com/docs/v2/ionicons/
 
-$ionicons-font-path: "node_modules/ionicons/dist/fonts";
-@import "node_modules/ionicons/dist/scss/ionicons";
-
+$ionicons-font-path: "~ionicons/dist/fonts";
+@import "~ionicons/dist/scss/ionicons";
 
 // All Ionic components
-// @import './_ionic';
+
+@import './ionic';

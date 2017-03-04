@@ -3,7 +3,7 @@ let _cordova = require('./_cordova.js');
 
 Promise.resolve()
 .then(_ionic.generate_scss)
-.then(_ionic.copy_fonts)
+//.then(_ionic.copy_fonts)
 .then(_cordova.create_project)
 .then(_cordova.copy_config)
 .then(function(){
