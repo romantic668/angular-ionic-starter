@@ -15,13 +15,13 @@ module.exports = {
         .sort(orderByDirDotsDashesAndName)
         .map(file => path.join(path.dirname(file), path.basename(file, '.scss')));
 
-      let stream = fs.createWriteStream("../../src/app/theme/_ionic.scss");
+      let stream = fs.createWriteStream("../../src/theme/ionic.scss");
       stream.once('open', function(fd) {
         
         let index = 0;
         for (let file of files) {
           file = file.replace(/\\/g,"/");
-          stream.write(`@import "ionic-angular/${file}";\n`);
+          stream.write(`@import "~ionic-angular/${file}";\n`);
           index++;
           if(index >= files.length){
             stream.end();
@@ -36,6 +36,8 @@ module.exports = {
     });
   },
 
+  // Not required since fonts have been added via Webpack now.
+  /* 
   copy_fonts: function() {
     return new Promise(function (resolve, reject) {
 
@@ -48,6 +50,7 @@ module.exports = {
 
     });
   }
+  */
 
 };
 
