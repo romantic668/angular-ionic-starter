@@ -8,7 +8,7 @@
     "url": "git+https://github.com/kitecs/angular-ionic-starter.git"
   },
   "scripts": {
-    "postinstall": "node hooks/_postinstall",
+    "postinstall": "node hooks/postinstall",
     "/": "------------------------DEV--------------------------",
     "dev:build:dll": "npm run clean:dll && webpack",   
     "dev:start": "npm run webdev",
