@@ -18,11 +18,24 @@ if(process.env.NODE_ENV == "dev"){ // Windows and Mac (+Cordova) development mac
 
 } else { // Travis CS environment and Heroku Staging and Production platforms
 
-  Promise.resolve()
-  .then(_ionic.generate_scss)
-  .then(_npm.compile_aot)
-  .then(function(){
-    console.log("_postinstall > Completed")
-  });
+  if(process.env.TRAVIS){
 
+    Promise.resolve()
+    .then(_ionic.generate_scss)
+    .then(_npm.compile_aot)
+    .then(function(){
+      console.log("_postinstall > Completed")
+    });
+
+  } else {
+
+    Promise.resolve()
+    .then(_ionic.generate_scss)
+    .then(_npm.compile_aot)
+    .then(_npm.build_web)
+    .then(function(){
+      console.log("_postinstall > Completed")
+    });
+
+  }
 }

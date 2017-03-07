@@ -20,6 +20,17 @@ module.exports = {
         resolve();
 
     });
-  }  
+  },
+
+  build_web: function() {
+    return new Promise(function (resolve, reject) {
+
+        console.log("_postinstall > NPM: Building web distro. Please wait..");
+        require('child_process').execSync('npm run prod:build:web', {stdio:[0,1,2]});
+        console.log("_postinstall > NPM: Web distro build completed. Ready to serve");
+        resolve();
+
+    });
+  }    
 
 };
