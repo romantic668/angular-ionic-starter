@@ -17,7 +17,7 @@ import { createEngine } from 'angular2-express-engine';
 // App
 import { AppModule } from '../app/app.module.universal.node';
 import { routes } from './server.routes';
-import { HOST, UNIVERSAL_PORT } from '../../constants';
+import { HOST, UNIVERSAL_PORT } from '../../config/constants';
 
 // enable prod for faster renders
 enableProdMode();

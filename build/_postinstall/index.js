@@ -1,7 +1,7 @@
 let _ionic = require('./_ionic.js');
 let _cordova = require('./_cordova.js');
 
-if(process.env.ENV == "dev"){ // Windows and Mac development machines
+if(process.env.NODE_ENV == "dev"){ // Windows and Mac development machines
 
   Promise.resolve()
   .then(_ionic.generate_scss)

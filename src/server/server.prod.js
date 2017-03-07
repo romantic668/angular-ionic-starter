@@ -3,9 +3,9 @@ const compression = require('compression')
 const express = require('express'),
 path = require('path');
 
-const E2E_PORT = require('../../constants').E2E_PORT;
-const HOST = require('../../constants').HOST;
-const PROD_PORT = require('../../constants').PROD_PORT;
+const E2E_PORT = require('../../config/constants').E2E_PORT;
+const HOST = require('../../config/constants').HOST;
+const PROD_PORT = require('../../config/constants').PROD_PORT;
 
 const app = express();
 const ROOT = path.join(path.resolve(__dirname, '../..'));
