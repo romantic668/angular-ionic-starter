@@ -99,7 +99,7 @@ config.plugins = [
       // your Angular Async Route paths relative to this root directory
     }
   ),
-  new ProgressPlugin(),
+  // new ProgressPlugin(),
   new CheckerPlugin(),
   new DefinePlugin(CONSTANTS),
   new NamedModulesPlugin(),
