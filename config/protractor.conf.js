@@ -1,6 +1,6 @@
 require('ts-node/register');
-const ports = require('../constants')
-const helpers = require('../helpers');
+const ports = require('./constants')
+const helpers = require('./helpers');
 
 let port;
 helpers.hasProcessFlag('universal') ? port = ports.UNIVERSAL_PORT : port = ports.E2E_PORT;
@@ -29,8 +29,7 @@ exports.config = {
   directConnect: true,
 
   capabilities: {
-    'browserName': 'firefox',
-    'marionette': false,
+    'browserName': 'chrome',
     'chromeOptions': {
       'args': ['show-fps-counter=true']
     }
@@ -40,11 +39,12 @@ exports.config = {
     browser.ignoreSynchronization = true;
   },
 
-  /**
-   * Angular 2 configuration
-   *
-   * useAllAngular2AppRoots: tells Protractor to wait for any angular2 apps on the page instead of just the one matching
-   * `rootEl`
-   */
-   useAllAngular2AppRoots: true
+  useAllAngular2AppRoots: true
 };
+
+if(process.env.TRAVIS){
+  config.capabilities = {
+    'browserName': 'firefox',
+    'marionette': false
+  }
+}

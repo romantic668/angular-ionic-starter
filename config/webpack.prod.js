@@ -7,24 +7,21 @@ const  {
 const {
   ContextReplacementPlugin,
   DefinePlugin,
-  DllPlugin,
-  DllReferencePlugin,
   ProgressPlugin,
   NoEmitOnErrorsPlugin,
   LoaderOptionsPlugin
 } = require('webpack');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const COPY_FOLDERS = [
-  { from: root('src/assets'), to: 'assets' },
-  { from: 'dll' }
-];
+const CompressionPlugin = require('compression-webpack-plugin');
+const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 
 let config = Object.assign({});
 
 config.cache = true;
-config.devtool = 'eval';
+config.devtool = 'source-map';
 
+/*
 config.devServer = {
   contentBase:'./src',
   port: DEV_PORT,
@@ -41,6 +38,7 @@ if (USE_DEV_SERVER_PROXY) {
     proxy: DEV_SERVER_PROXY_CONFIG
   });
 }
+*/
 
 config.performance = {
   hints: false
@@ -59,21 +57,25 @@ config.node = {
 };
 
 config.entry = {
-  main: root('src/main.browser')
+  main: root('src/main.browser.aot')
 };
 
 config.plugins = [];
 config.plugins.push(
-  new DllReferencePlugin({
-    context: '.',
-    manifest: require(root('./dll/polyfill-manifest.json'))
+  new CopyWebpackPlugin([{ from: root('src/assets'), to: 'assets' }], { ignore: ['*dist_root/*'] }),
+  new CopyWebpackPlugin([{ from: root('src/assets/dist_root') }]), 
+  new NoEmitOnErrorsPlugin(),
+  new UglifyJsPlugin({
+    beautify: false,
+    comments: false
   }),
-  new DllReferencePlugin({
-    context: '.',
-    manifest: require(root('./dll/vendor-manifest.json'))
-  }),
-  new CopyWebpackPlugin(COPY_FOLDERS, { ignore: ['*dist_root/*'] }),
-  new CopyWebpackPlugin([{ from: root('src/assets/dist_root') }])  
+  new CompressionPlugin({
+    asset: '[path].gz[query]',
+    algorithm: 'gzip',
+    test: /\.js$|\.html$/,
+    threshold: 10240,
+    minRatio: 0.8
+  })
 );
 
 config.output = {

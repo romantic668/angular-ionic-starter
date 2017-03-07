@@ -2,7 +2,7 @@ const webpackMerge = require('webpack-merge');
 const { hasProcessFlag, includeClientPackages, root, testDll } = require('./config/helpers.js');
 
 const  {
-  DEV_PORT, HOST
+  DEV_PORT, PROD_PORT, HOST
 } = require('./config/constants');
 
 const defaultConfig = {
@@ -11,8 +11,6 @@ const defaultConfig = {
   }
 };
 const commonConfig = require('./config/webpack.common');
-const dllConfig = require('./config/webpack.dll');
-const devConfig = require('./config/webpack.dev');
 
 const EVENT = process.env.npm_lifecycle_event || '';
 const AOT = EVENT.includes('aot');
@@ -46,30 +44,20 @@ if (!UNIVERSAL) {
 const PORT = port;
 
 if (DLL){
+  const dllConfig = require('./config/webpack.dll');
   module.exports = webpackMerge({}, defaultConfig, commonConfig, dllConfig);
+} else {
+
+  if (DEV_SERVER){
+    const devConfig = require('./config/webpack.dev');
+    testDll();
+    console.log(`Starting dev server on: http://${HOST}:${PORT}`);
+    module.exports = webpackMerge({}, defaultConfig, commonConfig, devConfig);
+  }
+
 }
 
-if (DEV_SERVER){
-  testDll();
-  console.log(`Starting dev server on: http://${HOST}:${PORT}`);
-  module.exports = webpackMerge({}, defaultConfig, commonConfig, devConfig);
+if(PROD){
+  const prodConfig = require('./config/webpack.prod');
+  module.exports = webpackMerge({}, defaultConfig, commonConfig, prodConfig);
 }
-
-/*
-switch (process.env.NODE_ENV) {
-  case 'prod':
-  case 'production':
-    //module.exports = require('./config/webpack.prod')({env: 'production'});
-    break;
-  case 'test':
-  case 'testing':
-    //module.exports = require('./config/webpack.test')({env: 'test'});
-    break;
-  case 'dev':
-  case 'development':
-  default:
-    //module.exports = require('./config/webpack.dev')({env: 'development'});
-    //module.exports = webpackMerge({}, dllConfig);
-    module.exports = webpackMerge({}, defaultConfig, commonConfig);
-}
-*/

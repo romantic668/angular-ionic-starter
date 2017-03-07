@@ -19,6 +19,7 @@
     "node_modules",
     "compiled",
     "e2e/**/*.ts",
+    "src/server/server.ts",
     "src/main.browser.universal.aot.ts",
     "src/app/app.module.universal.node.ts"
   ],

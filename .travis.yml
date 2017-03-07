@@ -1,3 +1,5 @@
+env:
+- Kite=selam
 sudo: required
 dist: trusty
 addons:
