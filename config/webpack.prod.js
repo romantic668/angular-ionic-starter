@@ -1,8 +1,7 @@
 const { root } = require('./helpers.js');
 
-const  {
-  DEV_PORT, DEV_SERVER_WATCH_OPTIONS, DEV_SERVER_PROXY_CONFIG, USE_DEV_SERVER_PROXY
-} = require('./constants');
+const EVENT = process.env.npm_lifecycle_event || '';
+const CORDOVA = EVENT.includes('cordova');
 
 const {
   ContextReplacementPlugin,
@@ -20,25 +19,6 @@ let config = Object.assign({});
 
 config.cache = true;
 config.devtool = 'source-map';
-
-/*
-config.devServer = {
-  contentBase:'./src',
-  port: DEV_PORT,
-  historyApiFallback: {
-    disableDotRule: true,
-  },
-  stats: 'minimal',
-  host: '0.0.0.0',
-  watchOptions: DEV_SERVER_WATCH_OPTIONS
-};
-
-if (USE_DEV_SERVER_PROXY) {
-  Object.assign(config.devServer, {
-    proxy: DEV_SERVER_PROXY_CONFIG
-  });
-}
-*/
 
 config.performance = {
   hints: false
@@ -68,19 +48,29 @@ config.plugins.push(
   new UglifyJsPlugin({
     beautify: false,
     comments: false
-  }),
-  new CompressionPlugin({
-    asset: '[path].gz[query]',
-    algorithm: 'gzip',
-    test: /\.js$|\.html$/,
-    threshold: 10240,
-    minRatio: 0.8
   })
 );
 
-config.output = {
-  path: root('dist/client'),
-  filename: 'index.js'
-};
+if (!CORDOVA) {
+  config.plugins.push(
+    new CompressionPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.js$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8
+    })
+  );
+
+  config.output = {
+    path: root('dist/client'),
+    filename: 'index.js'
+  };
+} else {
+  config.output = {
+    path: root('cordova/www'),
+    filename: 'index.js'
+  };
+}
 
 module.exports = config;

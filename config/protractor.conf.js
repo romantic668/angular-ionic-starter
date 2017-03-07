@@ -5,7 +5,7 @@ const helpers = require('./helpers');
 let port;
 helpers.hasProcessFlag('universal') ? port = ports.UNIVERSAL_PORT : port = ports.E2E_PORT;
 
-exports.config = {
+let config = {
   baseUrl: `http://localhost:${port}/`,
   specs: [
     helpers.root('e2e/**/**.e2e.ts'),
@@ -48,3 +48,5 @@ if(process.env.TRAVIS){
     'marionette': false
   }
 }
+
+exports.config = config;

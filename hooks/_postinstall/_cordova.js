@@ -11,6 +11,7 @@ module.exports = {
             console.log("_postinstall > Cordova: cordova directory already exists");
             resolve(); 
         } else {
+            console.log("_postinstall > Cordova: cordova directory is being created.. Please wait");
             exec('cordova create cordova', (error, stdout, stderr) => {
                 if (error) reject(error);
                 console.log("_postinstall > Cordova: cordova directory is created");
@@ -39,6 +40,7 @@ module.exports = {
             console.log(`_postinstall > Cordova: ${platform} platform already exists`);
             resolve(); 
         } else {
+            console.log(`_postinstall > Cordova: ${platform} is getting created. Please wait..`);
             process.chdir('cordova');
             exec(`cordova platform add ${platform}`, (error, stdout, stderr) => {
                 if (error) reject(error);
