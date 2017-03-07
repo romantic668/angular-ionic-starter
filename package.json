@@ -228,6 +228,10 @@
       "protractor"
     ]
   },
+  "engines": {
+    "node": ">= 7.4.0",
+    "npm": ">= 4.1.2"
+  },    
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/kitecs/angular-ionic-starter/issues"
