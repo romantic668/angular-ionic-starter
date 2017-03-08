@@ -89,6 +89,22 @@ config.module = {
       //{ test: /\.scss$/, include: path.resolve('src/app'), loader: ['raw-loader', 'postcss-loader', 'sass-loader'] },
       {
         test: /\.scss$/,
+        exclude: path.resolve('src/app'),
+        use: [
+          'style-loader',
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          { 
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [ require('autoprefixer')({ browsers: ['last 2 versions'] }) ]
+            }
+          },
+          'sass-loader'
+        ]
+      },
+      {
+        test: /\.scss$/,
+        include: path.resolve('src/app'),
         use: [
           'raw-loader',
           //'style-loader',
