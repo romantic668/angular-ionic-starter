@@ -21,7 +21,7 @@ module.exports = {
         let index = 0;
         for (let file of files) {
           file = file.replace(/\\/g,"/");
-          stream.write(`@import "~ionic-angular/${file}";\n`);
+          stream.write(`@import "node_modules/ionic-angular/${file}";\n`);
           index++;
           if(index >= files.length){
             stream.end();
