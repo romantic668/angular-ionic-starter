@@ -5,7 +5,7 @@ const  { DEV_PORT, PROD_PORT, HOST} = require('./config/constants');
 
 const defaultConfig = {
   resolve: {
-    extensions: ['.ts', '.js', '.json']
+    extensions: ['.ts', '.js', '.json', '.scss']
   }
 };
 const commonConfig = require('./config/webpack.common');
