@@ -31,9 +31,9 @@ if(process.env.NODE_ENV == "dev"){ // Windows and Mac (+Cordova) development mac
 
     Promise.resolve()
     .then(_ionic.generate_scss)
-    //.then(_npm.build_dll)
-    .then(_npm.compile_aot)
-    .then(_npm.build_web)
+    .then(_npm.build_dll)
+    //.then(_npm.compile_aot)
+    .then(_npm.build_web) // MODIFIED
     .then(function(){
       console.log("_postinstall > Completed")
     });
