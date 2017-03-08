@@ -30,7 +30,7 @@ export class DashboardPage implements OnDestroy, OnInit {
   constructor(
     fb: FormBuilder,
     private store: Store<AppState>,
-    private userActions: UserActions,
+    private userActions: UserActions
   ) {
     this.form = fb.group({
       name: ''
