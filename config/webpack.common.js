@@ -94,7 +94,7 @@ config.module = {
         test: /\.scss$/,
         use: [
           'style-loader',
-          { loader: 'css-loader', options: { importLoaders: 1 } },
+          { loader: 'css-loader', options: { importLoaders: 2 } },
           { 
             loader: 'postcss-loader',
             options: {
@@ -117,9 +117,9 @@ config.plugins = [
     }
   ),
   //new ProgressPlugin(),
-  new CheckerPlugin(),
+  //new CheckerPlugin(),
   new DefinePlugin(CONSTANTS),
-  new NamedModulesPlugin(),
+  //new NamedModulesPlugin(),
   new HtmlWebpackPlugin({
     template: 'src/index.ejs',
     inject: false,

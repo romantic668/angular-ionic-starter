@@ -16,7 +16,7 @@ import { User } from '../store/user/user.model';
       Secondary (Round)
     </button>  
     <button id="my-logout-button" ion-button (click)="call()">
-      Bu logout olani
+      Bu logout fikfikli
     </button>  
   `
 })
