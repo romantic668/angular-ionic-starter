@@ -13,7 +13,7 @@ const STORE_DEV_TOOLS = require('./constants').STORE_DEV_TOOLS;
 
 module.exports = {
 
-  entry: '../src/main.browser.aot',
+  entry: root('src/main.browser.aot'),
 
   /**
    * Source map for Karma from the help of karma-sourcemap-loader &  karma-webpack

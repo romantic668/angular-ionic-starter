@@ -9,14 +9,9 @@ import { UserActions } from '../store/user/user.actions';
 import { User } from '../store/user/user.model';
 
 @Component({
-  selector: 'my-dashboard',
-  styles: [`#my-logout-button { background: pink }`],
   template: `
     <button ion-button (click)="call()">
-      Secondary (Round)
-    </button>  
-    <button id="my-logout-button" ion-button (click)="call()">
-      Bu logout fikfikli
+      Welcome to KiteCS Starter
     </button>  
   `
 })
@@ -67,6 +62,6 @@ export class DashboardPage implements OnDestroy, OnInit {
   }
 
   call() {
-    console.log('Yaok');
+    console.log('Thanks');
   }
 }
