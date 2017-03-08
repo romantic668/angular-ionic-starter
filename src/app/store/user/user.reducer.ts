@@ -13,7 +13,7 @@ export interface UserState {
 export const initialState: UserState = {
   user: { name: 'Angular User' },
   loading: false,
-  loaded: true,
+  loaded: true
 };
 
 export function userReducer(state = initialState, action: Action): UserState {

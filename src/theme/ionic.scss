@@ -1,9 +1,6 @@
 @import "~ionic-angular/components/action-sheet/action-sheet";
 @import "~ionic-angular/components/action-sheet/action-sheet.ios";
 @import "~ionic-angular/components/action-sheet/action-sheet.md";
-@import "~ionic-angular/components/alert/alert";
-@import "~ionic-angular/components/alert/alert.ios";
-@import "~ionic-angular/components/alert/alert.md";
 @import "~ionic-angular/components/app/app";
 @import "~ionic-angular/components/app/app.ios";
 @import "~ionic-angular/components/app/app.md";
@@ -93,6 +90,9 @@
 @import "~ionic-angular/components/spinner/spinner";
 @import "~ionic-angular/components/spinner/spinner.ios";
 @import "~ionic-angular/components/spinner/spinner.md";
+@import "~ionic-angular/components/split-pane/split-pane";
+@import "~ionic-angular/components/split-pane/split-pane.ios";
+@import "~ionic-angular/components/split-pane/split-pane.md";
 @import "~ionic-angular/components/tabs/tabs";
 @import "~ionic-angular/components/tabs/tabs.ios";
 @import "~ionic-angular/components/tabs/tabs.md";
