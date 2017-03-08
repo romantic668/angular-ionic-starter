@@ -36,6 +36,7 @@ const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const webpackMerge = require('webpack-merge');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const { hasProcessFlag, includeClientPackages, root, testDll } = require('./helpers.js');
 
@@ -79,6 +80,8 @@ const CONSTANTS = {
   CORDOVA: CORDOVA
 };
 
+const CSS_REGEX = /\.css$|\.scss$/
+
 let config = Object.assign({});
 
 config.module = {
@@ -112,7 +115,8 @@ config.module = {
           { 
             loader: 'postcss-loader',
             options: {
-              plugins: () => [ require('autoprefixer')({ browsers: ['last 2 versions'] }) ]
+              ident: 'postcss', plugins: () => [ require('plugin') ]
+              //plugins: () => [ require('autoprefixer')({ browsers: ['last 2 versions'] }) ]
             }
           },
           'sass-loader'
@@ -139,7 +143,8 @@ config.plugins = [
     inject: false,
     cordova: CORDOVA,
     prod: PROD
-  })
+  }),
+  new ExtractTextPlugin('bundle.css'),
   /*
   new LoaderOptionsPlugin({
     options: {
