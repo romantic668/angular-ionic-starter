@@ -1,6 +1,6 @@
 import './theme/ionic.scss';
-import './theme/variables.scss';
-import './theme/main.scss';
+// import './theme/variables.scss';
+// import './theme/main.scss';
 import './polyfills.browser.aot';
 import './rxjs.imports';
 
