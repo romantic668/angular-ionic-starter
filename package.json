@@ -12,7 +12,6 @@
     "/": "------------------------DEV--------------------------",
     "dev:build:dll": "npm run clean:dll && webpack",
     "dev:start": "npm run webdev",
-    "dev:start:wpc": "npm run webpack",
     "dev:start:hmr": "npm run webdev:hmr",
     "//": "-----------------------PROD-------------------------",
     "prod:compile": "npm run clean:compile && npm run ngc",

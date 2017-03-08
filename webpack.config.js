@@ -32,17 +32,6 @@ if (DLL){
   const dllConfig = require('./config/webpack.dll');
   return module.exports = webpackMerge({}, defaultConfig, commonConfig, dllConfig);
 } else {
-  const devConfig = require('./config/webpack.dev');
-  testDll();
-  console.log(`Starting dev server on: http://${HOST}:${port}`);
-  return module.exports = webpackMerge({}, defaultConfig, commonConfig, devConfig);
-}
-
-/*
-if (DLL){
-  const dllConfig = require('./config/webpack.dll');
-  return module.exports = webpackMerge({}, defaultConfig, commonConfig, dllConfig);
-} else {
 
   if (DEV_SERVER){
     const devConfig = require('./config/webpack.dev');
@@ -57,4 +46,3 @@ if(PROD){
   const prodConfig = require('./config/webpack.prod');
   module.exports = webpackMerge({}, defaultConfig, commonConfig, prodConfig);
 }
-*/
