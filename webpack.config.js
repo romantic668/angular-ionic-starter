@@ -35,14 +35,12 @@ if (DLL){
 
   if (DEV_SERVER){
     const devConfig = require('./config/webpack.dev');
-    testDll();
-    console.log(`Starting dev server on: http://${HOST}:${port}`);
-    module.exports = webpackMerge({}, defaultConfig, commonConfig, devConfig);
+    return module.exports = webpackMerge({}, defaultConfig, commonConfig, devConfig);
   }
 
 }
 
 if(PROD){
   const prodConfig = require('./config/webpack.prod');
-  module.exports = webpackMerge({}, defaultConfig, commonConfig, prodConfig);
+  return module.exports = webpackMerge({}, defaultConfig, commonConfig, prodConfig);
 }

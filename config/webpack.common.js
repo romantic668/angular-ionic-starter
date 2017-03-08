@@ -92,7 +92,6 @@ config.module = {
       //{ test: /\.scss$/, include: path.resolve('src/app'), loader: ['raw-loader', 'postcss-loader', 'sass-loader'] },
       {
         test: /\.scss$/,
-        exclude: path.resolve('src/app'),
         use: [
           'style-loader',
           { loader: 'css-loader', options: { importLoaders: 1 } },
@@ -100,23 +99,6 @@ config.module = {
             loader: 'postcss-loader',
             options: {
               plugins: () => [ require('autoprefixer')({ browsers: ['last 2 versions'] }) ]
-            }
-          },
-          'sass-loader'
-        ]
-      },
-      {
-        test: /\.scss$/,
-        include: path.resolve('src/app'),
-        use: [
-          'raw-loader',
-          //'style-loader',
-          //{ loader: 'css-loader', options: { importLoaders: 1 } },
-          { 
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss', plugins: () => [ require('plugin') ]
-              //plugins: () => [ require('autoprefixer')({ browsers: ['last 2 versions'] }) ]
             }
           },
           'sass-loader'
@@ -134,7 +116,7 @@ config.plugins = [
       // your Angular Async Route paths relative to this root directory
     }
   ),
-  new ProgressPlugin(),
+  //new ProgressPlugin(),
   new CheckerPlugin(),
   new DefinePlugin(CONSTANTS),
   new NamedModulesPlugin(),
@@ -144,7 +126,7 @@ config.plugins = [
     cordova: CORDOVA,
     prod: PROD
   }),
-  new ExtractTextPlugin('bundle.css'),
+  //new ExtractTextPlugin('bundle.css'),
   /*
   new LoaderOptionsPlugin({
     options: {
