@@ -90,8 +90,9 @@ config.module = {
       {
         test: /\.scss$/,
         use: [
-          'style-loader',
-          { loader: 'css-loader', options: { importLoaders: 1 } },
+          'raw-loader',
+          //'style-loader',
+          //{ loader: 'css-loader', options: { importLoaders: 1 } },
           { 
             loader: 'postcss-loader',
             options: {
