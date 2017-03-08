@@ -53,7 +53,7 @@ export const views: Object[] = [
         <button ion-button left icon-only menuToggle >
           <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Fetihhhhh</ion-title>
+        <ion-title>Muratti</ion-title>
         <ion-buttons right>
           <button ion-button icon-only>
             <ion-icon name="more"></ion-icon>
