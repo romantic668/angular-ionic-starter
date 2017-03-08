@@ -88,8 +88,7 @@ config.module = {
   rules: [
       { test: /\.js$/, loader: 'source-map-loader', exclude: [EXCLUDE_SOURCE_MAPS]},
       { test: /\.ts$/, loader: ['@angularclass/hmr-loader', 'awesome-typescript-loader?{configFileName: "tsconfig.webpack.json"}', 'angular2-template-loader', 'angular-router-loader?loader=system&genDir=compiled&aot=' + AOT]},
-      //{ test: /\.scss$/, exclude: path.resolve('src/app'), loader: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'] },
-      //{ test: /\.scss$/, include: path.resolve('src/app'), loader: ['raw-loader', 'postcss-loader', 'sass-loader'] },
+      { test: /\.(eot|svg|ttf|woff|woff2)(\?v=.*)?$/, loader: 'file-loader?name=fonts/[name].[ext]' },
       {
         test: /\.scss$/,
         use: [
@@ -103,8 +102,7 @@ config.module = {
           },
           'sass-loader'
         ]
-      },
-      { test: /\.(eot|svg|ttf|woff|woff2)(\?v=.*)?$/, loader: 'file-loader?name=fonts/[name].[ext]' }
+      }
   ]
 };
 
@@ -116,38 +114,16 @@ config.plugins = [
       // your Angular Async Route paths relative to this root directory
     }
   ),
-  //new ProgressPlugin(),
-  //new CheckerPlugin(),
+  new ProgressPlugin(),
+  new CheckerPlugin(),
   new DefinePlugin(CONSTANTS),
-  //new NamedModulesPlugin(),
+  new NamedModulesPlugin(),
   new HtmlWebpackPlugin({
     template: 'src/index.ejs',
     inject: false,
     cordova: CORDOVA,
     prod: PROD
-  }),
-  //new ExtractTextPlugin('bundle.css'),
-  /*
-  new LoaderOptionsPlugin({
-    options: {
-      resolve: {},
-      postcss: [
-      
-        autoprefixer({
-          browsers: [
-            'last 2 versions',
-            'iOS >= 8',
-            'Android >= 4.4',
-            'Explorer >= 11',
-            'ExplorerMobile >= 11'
-          ],
-          cascade: false
-        })
-        
-      ]
-    }
   })
-  */
 ];
 
 module.exports = config;
