@@ -1,0 +1,24 @@
+{
+  "name": "angular-ionic-starter",
+  "description": "Kite CS Angular/Ionic Starter",
+  "scripts": {
+  },
+  "env": {
+    "NODE_MODULES_CACHE": {
+      "required": true
+    },
+    "NPM_CONFIG_PRODUCTION": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

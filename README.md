@@ -6,8 +6,8 @@
 ### Package Upgrade Scripts Checklist.
 - npm cache clean / npm run clean / manually delete node_modules
 - npm install (postinstall hook will take further actions automatically, depending on the platform)
-- yarn start / yarn run start:hmr (Development)
-- yarn run compile / yarn run prodserver (Prod)
+- yarn dev:start:hmr (Development)
+- yarn prod:compile / yarn prod:build:web / yarn prod:start (Prod)
 - yarn run build:cordova / cd cordova / cordova build <android> | <ios> (Cordova)
 - yarn test / yarn run e2e:testall (or yarn ci:testall)
 
