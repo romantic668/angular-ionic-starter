@@ -10,7 +10,7 @@ import { User } from '../store/user/user.model';
 
 @Component({
   selector: 'my-dashboard',
-  styles: [`#my-logout-button { background: green }`],
+  styles: [`#my-logout-button { background: pink }`],
   template: `
     <button ion-button (click)="call()">
       Secondary (Round)
