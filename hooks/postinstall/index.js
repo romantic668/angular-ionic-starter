@@ -22,7 +22,7 @@ if(process.env.NODE_ENV == "dev"){ // Windows and Mac (+Cordova) development mac
 
     Promise.resolve()
     .then(_ionic.generate_scss)
-    .then(_npm.compile_aot)
+    //.then(_npm.compile_aot) // Swithced to e2e:aot in Travis so compilation takes place there
     .then(function(){
       console.log("_postinstall > Completed")
     });
