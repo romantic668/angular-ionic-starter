@@ -1,5 +1,7 @@
 # KiteCS Angular Starter
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/kitecs/angular-ionic-starter.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/kitecs/angular-ionic-starter.svg?branch=master)](https://travis-ci.org/kitecs/angular-ionic-starter)
 [![Coverage Status](https://coveralls.io/repos/github/kitecs/angular-ionic-starter/badge.svg?branch=master)](https://coveralls.io/github/kitecs/angular-ionic-starter?branch=master)
 
