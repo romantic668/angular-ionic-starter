@@ -24,7 +24,7 @@ ngAfterContentInit function not getting triggered in Ionic's MenuToggle directiv
 Workaround: Calling the MenuToggle.ngAfterContentInit method from AppComponent manually via ViewChild
 - _decorateModuleRef under environments.ts is givving an error because of missing probe and coreTokens properties under window.ng property.
 Workaround: Moved the errorous code above but now development mode is not working correctly (ex: reflected in Augury not working)
-- Some Ionic components don't work with ng 4.x yet. Their scss imports at src/theme/ionic.scss cause Heroku to not be able to load
+- Some Ionic components don't work with ng 4.x yet. Their scss imports at src/app/theme/ionic.scss cause Heroku to not be able to load
 css properly. Check components from time to time and remove the problematic ones. Ionic 3 will be coming soon so this is only a temporary fix. Current problematic components: AlertCmp: 
     - @import "~ionic-angular/components/alert/alert";
     - @import "~ionic-angular/components/alert/alert.ios";

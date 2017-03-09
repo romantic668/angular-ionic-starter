@@ -15,7 +15,7 @@ module.exports = {
         .sort(orderByDirDotsDashesAndName)
         .map(file => path.join(path.dirname(file), path.basename(file, '.scss')));
 
-      let stream = fs.createWriteStream("../../src/theme/ionic.scss");
+      let stream = fs.createWriteStream("../../src/app/theme/ionic.scss");
       stream.once('open', function(fd) {
         
         let index = 0;
