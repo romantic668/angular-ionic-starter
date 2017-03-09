@@ -3,8 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { MenuToggle } from 'ionic-angular';
 
-import { MOBILE } from './services/constants';
-
 export const views: Object[] = [
   {
     name: 'Dashboard',

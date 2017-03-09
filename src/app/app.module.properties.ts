@@ -1,24 +1,27 @@
-import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { IdlePreload, IdlePreloadModule } from '@angularclass/idle-preload';
 import { APP_BASE_HREF } from '@angular/common';
+
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { RouterModule } from '@angular/router';
+import { routes } from './app.routing';
+
+import { IdlePreload, IdlePreloadModule } from '@angularclass/idle-preload';
 
 import { EffectsModule } from '@ngrx/effects';
 import { RouterStoreModule } from '@ngrx/router-store';
+import { useLogMonitor } from '@ngrx/store-log-monitor';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { useLogMonitor } from '@ngrx/store-log-monitor';
-
-import { routes } from './app.routing';
-import { rootReducer } from './store/reducers';
 import { StoreDevToolsModule } from './components/store-devtools/store-devtools.module';
+
+import { rootReducer } from './store/reducers';
 import { UserEffects } from './store/user/user.effects';
+import { UserActions } from './store/user/user.actions';
 
 import { DashboardPage } from './pages/dashboard.page';
 import { NotFoundPage } from './pages/not-found.page';
 
-import { UserActions } from './store/user/user.actions';
-import { UserService } from './store/user/user.service';
+
 
 export const APP_DECLARATIONS = [
   DashboardPage,
@@ -54,7 +57,6 @@ export const APP_IMPORTS = [
 
 export const APP_PROVIDERS = [
   UserActions,
-  UserService,
   {provide: APP_BASE_HREF, useValue : '/' }
 ];
 

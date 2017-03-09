@@ -1,7 +1,6 @@
 # KiteCS Angular Starter
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/kitecs/angular-ionic-starter.svg)](https://greenkeeper.io/)
-
 [![Build Status](https://travis-ci.org/kitecs/angular-ionic-starter.svg?branch=master)](https://travis-ci.org/kitecs/angular-ionic-starter)
 [![Coverage Status](https://coveralls.io/repos/github/kitecs/angular-ionic-starter/badge.svg?branch=master)](https://coveralls.io/github/kitecs/angular-ionic-starter?branch=master)
 
@@ -30,6 +29,7 @@ css properly. Check components from time to time and remove the problematic ones
     - @import "~ionic-angular/components/alert/alert";
     - @import "~ionic-angular/components/alert/alert.ios";
     - @import "~ionic-angular/components/alert/alert.md";
+- .yarnclean file breaks the tslint and therefore the tests and CI so don't use yarn until Yarn becomes a stable software (at least for Windows)
 
 ### Locked Dependencies
 - protractor: locked to 5.0.0 (on 02/03/17 the latest version was 5.1.1) : Protractor above 5.0.0 doesnt work with firefox
