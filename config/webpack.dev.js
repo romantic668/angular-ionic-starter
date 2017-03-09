@@ -16,7 +16,7 @@ const {
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const COPY_FOLDERS = [
-  { from: root('src/assets'), to: 'assets' },
+  { from: root('src/app/assets'), to: 'assets' },
   { from: 'dll' }
 ];
 
@@ -73,7 +73,7 @@ config.plugins.push(
     manifest: require(root('./dll/vendor-manifest.json'))
   }),
   new CopyWebpackPlugin(COPY_FOLDERS, { ignore: ['*dist_root/*'] }),
-  new CopyWebpackPlugin([{ from: root('src/assets/dist_root') }])  
+  new CopyWebpackPlugin([{ from: root('src/app/assets/dist_root') }])  
 );
 
 config.output = {

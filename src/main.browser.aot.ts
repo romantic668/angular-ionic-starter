@@ -1,13 +1,15 @@
-import './theme/ionic.scss';
-import './theme/variables.scss';
-import './theme/main.scss';
-import './polyfills.browser.aot';
-import './rxjs.imports';
+import './app/theme/ionic.scss';
+import './app/theme/variables.scss';
+import './app/theme/main.scss';
+
+import '../config/polyfills.browser.aot';
+import '../config/rxjs.imports';
 
 declare var ENV: string;
 
 import { enableProdMode } from '@angular/core';
 import { platformBrowser } from '@angular/platform-browser';
+
 import { AppModuleNgFactory } from '../compiled/src/app/app.module.ngfactory';
 
 if ('production' === ENV) {

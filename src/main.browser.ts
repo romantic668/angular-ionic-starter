@@ -1,8 +1,9 @@
-import './theme/ionic.scss';
-import './theme/variables.scss';
-import './theme/main.scss';
-import './polyfills.browser';
-import './rxjs.imports';
+import './app/theme/ionic.scss';
+import './app/theme/variables.scss';
+import './app/theme/main.scss';
+
+import '../config/polyfills.browser';
+import '../config/rxjs.imports';
 
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -17,7 +18,7 @@ if ('production' === ENV) {
 if (CORDOVA) {
   document.addEventListener('deviceready', () => bootloader(main));
 } else {
-  bootloader(main);
+  bootloader(main); // needed for hmr
 }
 
 export function main(): Promise<any> {
@@ -26,7 +27,3 @@ export function main(): Promise<any> {
     .then(decorateModuleRef)
     .catch(err => console.error(err));
 }
-
-// needed for hmr
-// in prod this is replace for document ready
-// bootloader(main);

@@ -42,8 +42,8 @@ config.entry = {
 
 config.plugins = [];
 config.plugins.push(
-  new CopyWebpackPlugin([{ from: root('src/assets'), to: 'assets' }], { ignore: ['*dist_root/*'] }),
-  new CopyWebpackPlugin([{ from: root('src/assets/dist_root') }]), 
+  new CopyWebpackPlugin([{ from: root('src/app/assets'), to: 'assets' }], { ignore: ['*dist_root/*'] }),
+  new CopyWebpackPlugin([{ from: root('src/app/assets/dist_root') }]), 
   new NoEmitOnErrorsPlugin(),
   new UglifyJsPlugin({
     beautify: false,
