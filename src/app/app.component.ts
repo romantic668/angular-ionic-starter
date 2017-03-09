@@ -3,8 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { MenuToggle } from 'ionic-angular';
 
-import { MOBILE } from './services/constants';
-
 export const views: Object[] = [
   {
     name: 'Dashboard',
@@ -43,7 +41,7 @@ export const views: Object[] = [
         <button ion-button left icon-only menuToggle >
           <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Kite CS</ion-title>
+        <ion-title>Kite CS Starter</ion-title>
         <ion-buttons right>
           <button ion-button icon-only>
             <ion-icon name="more"></ion-icon>

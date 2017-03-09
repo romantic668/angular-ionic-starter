@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { UserActions } from './user.actions';
 import { AppState } from '../reducers';
-import { UserService } from './user.service';
+// import { UserService } from './user.service';
 
 @Injectable()
 
@@ -14,10 +14,11 @@ export class UserEffects {
   constructor(
     private actions$: Actions,
     private store: Store<AppState>,
-    private userService: UserService,
+    // private userService: UserService,
     private userActions: UserActions
   ) { }
 
+  /*
   @Effect() logout$ = this.actions$
     .ofType(UserActions.LOGOUT)
     .map(action => action.payload)
@@ -30,4 +31,5 @@ export class UserEffects {
         this.userActions.logoutFail(err)
       ))
     );
+  */
 }
