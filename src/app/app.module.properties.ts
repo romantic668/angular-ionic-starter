@@ -10,10 +10,12 @@ import { IdlePreload, IdlePreloadModule } from '@angularclass/idle-preload';
 import { RouterStoreModule } from '@ngrx/router-store';
 import { useLogMonitor } from '@ngrx/store-log-monitor';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreDevToolsModule } from './components/store-devtools/store-devtools.module';
 
-import { rootReducer } from './store/reducers/root.reducer';
+import { rootReducer } from './store/root.reducer';
+import { SystemEffects } from './store/system';
 
 import { DashboardPage } from './pages/dashboard.page';
 import { AboutPage } from './pages/about.page';
@@ -48,11 +50,12 @@ if (ENV === 'development' && !AOT &&
 ]);
 
 export const APP_IMPORTS = [
-  ReactiveFormsModule,
-  IdlePreloadModule.forRoot(), // forRoot ensures the providers are only created once
   RouterModule.forRoot(routes, { useHash: false, preloadingStrategy: IdlePreload }),
+  ReactiveFormsModule,
+  IdlePreloadModule.forRoot(),
   RouterStoreModule.connectRouter(),
   StoreModule.provideStore(rootReducer),
+  EffectsModule.run(SystemEffects),
   STORE_DEV_TOOLS_IMPORTS,
   StoreDevToolsModule
 ];
