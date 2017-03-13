@@ -58,7 +58,7 @@ export const views: Object[] = [
 })
 export class AppComponent implements AfterViewInit {
   showMonitor = (ENV === 'development' && !AOT &&
-    ['monitor', 'both'].includes(STORE_DEV_TOOLS) // set in constants.js file in project root
+    (['monitor', 'both'].indexOf(STORE_DEV_TOOLS)>-1) // set in constants.js file in project root
   );
 
   screenWidth = 'fullscreen';
