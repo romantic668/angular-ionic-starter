@@ -1,9 +1,13 @@
 import { APP_BASE_HREF } from '@angular/common';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
 
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routing';
+
+import { IonicApp, IonicModule } from 'ionic-angular';
 
 import { IdlePreload, IdlePreloadModule } from '@angularclass/idle-preload';
 
@@ -17,6 +21,8 @@ import { StoreDevToolsModule } from './components/store-devtools/store-devtools.
 import { rootReducer } from './store/root.reducer';
 import { SystemEffects } from './store/system';
 
+import { AppComponent } from './app.component';
+
 import { DashboardPage } from './pages/dashboard.page';
 import { AboutPage } from './pages/about.page';
 import { NotFoundPage } from './pages/not-found.page';
@@ -25,6 +31,8 @@ import { HeaderComponent } from './components/layout/header.component';
 import { MenuComponent } from './components/layout/menu.component';
 
 export const APP_DECLARATIONS = [
+  AppComponent,
+
   DashboardPage,
   AboutPage,
   NotFoundPage,
@@ -38,6 +46,7 @@ export const APP_ENTRY_COMPONENTS = [
 ];
 
 const STORE_DEV_TOOLS_IMPORTS = [];
+
 if (ENV === 'development' && !AOT &&
   (['monitor', 'both'].indexOf(STORE_DEV_TOOLS)>-1) // set in constants.js file in project root
 ) STORE_DEV_TOOLS_IMPORTS.push(...[
@@ -50,6 +59,8 @@ if (ENV === 'development' && !AOT &&
 ]);
 
 export const APP_IMPORTS = [
+  BrowserModule,
+  HttpModule,
   RouterModule.forRoot(routes, { useHash: false, preloadingStrategy: IdlePreload }),
   ReactiveFormsModule,
   IdlePreloadModule.forRoot(),
@@ -57,7 +68,8 @@ export const APP_IMPORTS = [
   StoreModule.provideStore(rootReducer),
   EffectsModule.run(SystemEffects),
   STORE_DEV_TOOLS_IMPORTS,
-  StoreDevToolsModule
+  StoreDevToolsModule,
+  IonicModule.forRoot(AppComponent, { locationStrategy: 'path'})
 ];
 
 export const APP_PROVIDERS = [

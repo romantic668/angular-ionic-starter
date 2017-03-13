@@ -1,10 +1,8 @@
 import { ApplicationRef, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule } from '@angular/http';
+
+import { IonicApp } from 'ionic-angular';
 
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
-
-import { IonicApp, IonicModule } from 'ionic-angular';
 
 import { Store } from '@ngrx/store';
 import { AppState } from './store/root.reducer';
@@ -16,35 +14,24 @@ import {
   APP_PROVIDERS
 } from './app.module.properties';
 
-import { AppComponent } from './app.component';
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    APP_DECLARATIONS
-  ],
+  declarations: [APP_DECLARATIONS],
   entryComponents: [APP_ENTRY_COMPONENTS],
-  imports: [
-    APP_IMPORTS,
-    BrowserModule,
-    HttpModule,
-    IonicModule.forRoot(AppComponent, { locationStrategy: 'path'})
-  ],
-  bootstrap: [IonicApp],
-  providers: [APP_PROVIDERS]
+  imports: [APP_IMPORTS],
+  providers: [APP_PROVIDERS],
+  bootstrap: [IonicApp]
 })
 
 export class AppModule {
-  constructor(public appRef: ApplicationRef,
-    private _store: Store<AppState>) { }
+
+  constructor(public appRef: ApplicationRef, private _store: Store<AppState>) { }
 
   hmrOnInit(store) {
     if (!store || !store.rootState) return;
 
-    // restore state by dispatch a SET_ROOT_STATE action
     if (store.rootState) {
       this._store.dispatch({
-        type: 'SET_ROOT_STATE',
+        type: '[HMR] Set root state',
         payload: store.rootState
       });
     }
@@ -53,6 +40,7 @@ export class AppModule {
     this.appRef.tick();
     Object.keys(store).forEach(prop => delete store[prop]);
   }
+
   hmrOnDestroy(store) {
     const cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
     this._store.take(1).subscribe(s => store.rootState = s);
@@ -60,8 +48,10 @@ export class AppModule {
     store.restoreInputValues = createInputTransfer();
     removeNgStyles();
   }
+
   hmrAfterDestroy(store) {
     store.disposeOldHosts();
     delete store.disposeOldHosts;
   }
+
 }
