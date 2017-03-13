@@ -8,7 +8,7 @@ import { StoreDevToolsComponent } from './store-devtools.component';
 
 const IMPORTS = [];
 
-if (ENV === 'development' && !AOT && ['monitor', 'both'].includes(STORE_DEV_TOOLS))
+if (ENV === 'development' && !AOT && (['monitor', 'both'].indexOf(STORE_DEV_TOOLS)>-1))
   IMPORTS.push(...[StoreLogMonitorModule]
 );
 

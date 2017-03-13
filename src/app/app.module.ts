@@ -7,6 +7,7 @@ import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularcla
 import { IonicApp, IonicModule } from 'ionic-angular';
 
 import { Store } from '@ngrx/store';
+import { AppState } from './store/reducers/root.reducer';
 
 import {
   APP_DECLARATIONS,
@@ -16,8 +17,6 @@ import {
 } from './app.module.properties';
 
 import { AppComponent } from './app.component';
-
-import { AppState } from './store/reducers';
 
 @NgModule({
   declarations: [
