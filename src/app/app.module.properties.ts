@@ -18,11 +18,12 @@ import { rootReducer } from './store/reducers/root.reducer';
 import { DashboardPage } from './pages/dashboard.page';
 import { NotFoundPage } from './pages/not-found.page';
 
-
+import { HeaderComponent } from './components/header/header.component';
 
 export const APP_DECLARATIONS = [
   DashboardPage,
-  NotFoundPage
+  NotFoundPage,
+  HeaderComponent
 ];
 
 export const APP_ENTRY_COMPONENTS = [
