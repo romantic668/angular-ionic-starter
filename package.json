@@ -103,7 +103,7 @@
     "@types/serve-static": "~1.7.31",
     "angular-router-loader": "~0.5.0",
     "angular2-template-loader": "~0.6.0",
-    "autoprefixer": "^6.7.6",
+    "autoprefixer": "^6.7.7",
     "awesome-typescript-loader": "~3.1.2",
     "codelyzer": "^3.0.0-beta.3",
     "compression-webpack-plugin": "~0.3.1",
