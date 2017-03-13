@@ -80,7 +80,22 @@ module.exports = {
           /\.(e2e|spec)\.ts$/,
           /node_modules/
         ]
-      }
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          { loader: 'css-loader', options: { importLoaders: 2 } },
+          { 
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [ require('autoprefixer')({ browsers: ['last 2 versions'] }) ]
+            }
+          },
+          'sass-loader'
+        ]
+      },
+      { test: /\.(eot|svg|ttf|woff|woff2)(\?v=.*)?$/, loader: 'file-loader?name=fonts/[name].[ext]' }            
     ]
   },
   plugins: [
