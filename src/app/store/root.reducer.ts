@@ -2,14 +2,18 @@ import { compose } from '@ngrx/core/compose';
 import { combineReducers } from '@ngrx/store';
 import { routerReducer, RouterState } from '@ngrx/router-store';
 
-import { DEV_REDUCERS } from './dev.reducers';
+import { DEV_REDUCERS } from './dev/dev.reducers';
+
+import { SystemReducer, SystemState } from './system';
 
 export interface AppState {
   router: RouterState;
+  system: SystemState;
 };
 
 const reducers = {
-  router: routerReducer
+  router: routerReducer,
+  system: SystemReducer
 };
 
 const developmentReducer = compose(...DEV_REDUCERS, combineReducers)(reducers);
