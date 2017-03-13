@@ -110,7 +110,7 @@
     "copy-webpack-plugin": "~4.0.0",
     "cordova": "^6.5.0",
     "coveralls": "^2.11.16",
-    "css-loader": "~0.26.2",
+    "css-loader": "~0.27.2",
     "es6-promise": "~4.1.0",
     "es6-promise-loader": "~1.0.2",
     "eslint": "^3.17.1",
