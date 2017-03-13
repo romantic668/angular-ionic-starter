@@ -98,7 +98,7 @@
     "@types/ip": "~0.0.29",
     "@types/jasmine": "2.5.45",
     "@types/mime": "~0.0.29",
-    "@types/node": "~7.0.5",
+    "@types/node": "~7.0.8",
     "@types/selenium-webdriver": "~3.0.0",
     "@types/serve-static": "~1.7.31",
     "angular-router-loader": "~0.5.0",
