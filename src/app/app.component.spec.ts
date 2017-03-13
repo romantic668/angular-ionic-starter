@@ -6,6 +6,13 @@ import { APP_BASE_HREF } from '@angular/common';
 
 import { IonicApp, IonicModule } from 'ionic-angular';
 
+import {
+  APP_DECLARATIONS,
+  APP_ENTRY_COMPONENTS,
+  APP_IMPORTS,
+  APP_PROVIDERS
+} from './app.module.properties';
+
 import { AppComponent } from './app.component';
 
 import { DashboardPage } from './pages/dashboard.page';
@@ -26,7 +33,7 @@ describe('App Component', () => {
         IonicModule.forRoot(AppComponent, { locationStrategy: 'path'})
       ],
       providers: [{provide: APP_BASE_HREF, useValue : '/' }],
-      declarations: [AppComponent, DashboardPage, NotFoundPage]
+      declarations: [AppComponent, ...APP_DECLARATIONS]
     });
   });
 

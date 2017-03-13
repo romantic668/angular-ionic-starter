@@ -16,13 +16,19 @@ import { StoreDevToolsModule } from './components/store-devtools/store-devtools.
 import { rootReducer } from './store/reducers/root.reducer';
 
 import { DashboardPage } from './pages/dashboard.page';
+import { AboutPage } from './pages/about.page';
 import { NotFoundPage } from './pages/not-found.page';
 
-
+import { HeaderComponent } from './components/layout/header.component';
+import { MenuComponent } from './components/layout/menu.component';
 
 export const APP_DECLARATIONS = [
   DashboardPage,
-  NotFoundPage
+  AboutPage,
+  NotFoundPage,
+
+  HeaderComponent,
+  MenuComponent
 ];
 
 export const APP_ENTRY_COMPONENTS = [

@@ -9,9 +9,6 @@ import { Component } from '@angular/core';
 })
 
 export class DashboardPage {
-
-  constructor() {}
-
   call() {
     console.log('Thanks');
   }

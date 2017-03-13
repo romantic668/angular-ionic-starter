@@ -8,3 +8,29 @@
 .width-adjusted-screen{
     width:70%;
 }
+
+.md .marginTopAdjusted > ion-refresher-content, 
+.md .marginTopAdjusted > .fixed-content, 
+.md .marginTopAdjusted > .scroll-content{
+  margin-top:56px;
+}
+
+.ios .marginTopAdjusted > ion-refresher-content,
+.ios .marginTopAdjusted > .fixed-content,
+.ios .marginTopAdjusted > .scroll-content{
+  margin-top:44px;
+}
+
+.wp .marginTopAdjusted > ion-refresher-content,
+.wp .marginTopAdjusted > .fixed-content,
+.wp .marginTopAdjusted > .scroll-content{
+  margin-top:46px;
+}
+
+ion-list{
+  margin:0px !important;
+}
+
+.item{
+  padding-left:0px; 
+}

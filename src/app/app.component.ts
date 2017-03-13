@@ -1,70 +1,28 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
-import { MenuToggle } from 'ionic-angular';
-
-export const views: Object[] = [
-  {
-    name: 'Dashboard',
-    icon: 'home',
-    link: ['']
-  },
-  {
-    name: 'Bad Link',
-    icon: 'error',
-    link: ['wronglink']
-  }
-];
-
+import { Content } from 'ionic-angular';
 
 @Component({
   selector: 'ion-app',
   template: `
-    <ion-menu [content]="content" swipeEnabled="true">
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Menu</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content>
-        <ion-list>
-          <ion-item menuClose *ngFor="let view of views">
-            <a [routerLink]="view.link" routerLinkActive="active-link">
-              {{view.name}}
-            </a>
-          </ion-item>
-        </ion-list>
-      </ion-content>
-    </ion-menu>
-    <ion-header [ngClass]="screenWidth">
-      <ion-navbar>
-        <button ion-button left icon-only menuToggle >
-          <ion-icon name="menu"></ion-icon>
-        </button>
-        <ion-title>Kite CS Starter</ion-title>
-        <ion-buttons right>
-          <button ion-button icon-only>
-            <ion-icon name="more"></ion-icon>
-          </button>
-        </ion-buttons>
-      </ion-navbar>
-    </ion-header>
-    <ion-content padding [ngClass]="screenWidth">
-      <router-outlet #content (activate)="activateEvent($event)"
-      (deactivate)="deactivateEvent($event)"></router-outlet>       
-    </ion-content>    
+    <ion-split-pane [ngClass]="screenWidth">
+      <ion-menu [content]="mainContent" swipeEnabled="true">
+        <ais-menu></ais-menu>
+      </ion-menu>
+      <ais-header></ais-header>
+      <ion-content #mainContent padding class="marginTopAdjusted">
+        <router-outlet></router-outlet>       
+      </ion-content>    
+    </ion-split-pane>
     <store-devtools *ngIf="showMonitor"></store-devtools>
   `
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent  {
   showMonitor = (ENV === 'development' && !AOT &&
     (['monitor', 'both'].indexOf(STORE_DEV_TOOLS)>-1) // set in constants.js file in project root
   );
 
   screenWidth = 'fullscreen';
-
-  views = views;
-  @ViewChild(MenuToggle) _menuToggle: MenuToggle;
 
   constructor(
     public route: ActivatedRoute,
@@ -73,18 +31,7 @@ export class AppComponent implements AfterViewInit {
     ( this.showMonitor ?
       this.screenWidth = 'width-adjusted-screen' :
       this.screenWidth = 'fullscreen');
-  }
 
-  ngAfterViewInit() {
-    this._menuToggle.ngAfterContentInit();
-  }
-
-  activateEvent(event) {
-    if (ENV === 'development') console.log('Activate Event:', event);
-  }
-
-  deactivateEvent(event) {
-    if (ENV === 'development') console.log('Deactivate Event', event);
   }
 
 }
