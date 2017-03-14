@@ -47,9 +47,7 @@ config.entry = {
     '@ngrx/router-store',
     '@ngrx/store',
     '@ngrx/store-devtools',
-    '@ngrx/store-log-monitor',
     'ngrx-store-freeze',
-    'ngrx-store-logger',
     'rxjs',      
   ]
 };
