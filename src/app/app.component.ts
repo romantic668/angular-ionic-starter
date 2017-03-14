@@ -11,7 +11,7 @@ import { Subject } from 'rxjs/Subject';
 @Component({
   selector: 'ion-app',
   template: `
-    <ion-split-pane [ngClass]="screenWidth">
+    <ion-split-pane>
       <ion-menu [content]="mainContent" swipeEnabled="true">
         <ais-menu></ais-menu>
       </ion-menu>
@@ -20,13 +20,9 @@ import { Subject } from 'rxjs/Subject';
         <router-outlet></router-outlet>       
       </ion-content>    
     </ion-split-pane>
-    <store-devtools *ngIf="showMonitor"></store-devtools>
   `
 })
 export class AppComponent  {
-  showMonitor = (ENV === 'development' && !AOT &&
-    (['monitor', 'both'].indexOf(STORE_DEV_TOOLS)>-1) // set in constants.js file in project root
-  );
 
   resize$ = new Subject();
   screenWidth = 'fullscreen';
@@ -38,12 +34,9 @@ export class AppComponent  {
     private store: Store<AppState>,
     private zone: NgZone
   ) {
-    ( this.showMonitor ?
-      this.screenWidth = 'width-adjusted-screen' :
-      this.screenWidth = 'fullscreen');
 
-      this.initializeApp();
-      this.setupResizeListener();
+    this.initializeApp();
+    this.setupResizeListener();
 
   }
 

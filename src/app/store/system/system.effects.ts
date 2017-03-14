@@ -22,8 +22,7 @@ export class SystemEffects {
     .mergeMap((platform) => {
         return [
             new SystemActions.SetDimensions({ width:this.platform.width() , height:this.platform.height() })
-            //new SystemActions.SetOrientation( this.platform.isPortrait() ),
-            //new SystemActions.SetPlatformSuccess(null)
+            // This will trigger the resize$ effect below
         ];
     })
     .catch(() => Observable.of({ type: '[System] Set platform fail' }));

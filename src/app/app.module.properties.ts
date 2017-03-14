@@ -11,12 +11,10 @@ import { IonicApp, IonicModule } from 'ionic-angular';
 
 import { IdlePreload, IdlePreloadModule } from '@angularclass/idle-preload';
 
-import { RouterStoreModule } from '@ngrx/router-store';
-import { useLogMonitor } from '@ngrx/store-log-monitor';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { RouterStoreModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { StoreDevToolsModule } from './components/store-devtools/store-devtools.module';
 
 import { rootReducer } from './store/root.reducer';
 import { SystemEffects } from './store/system';
@@ -45,30 +43,16 @@ export const APP_ENTRY_COMPONENTS = [
 
 ];
 
-const STORE_DEV_TOOLS_IMPORTS = [];
-
-if (ENV === 'development' && !AOT &&
-  (['monitor', 'both'].indexOf(STORE_DEV_TOOLS)>-1) // set in constants.js file in project root
-) STORE_DEV_TOOLS_IMPORTS.push(...[
-  StoreDevtoolsModule.instrumentStore({
-    monitor: useLogMonitor({
-      visible: true,
-      position: 'right'
-    })
-  })
-]);
-
 export const APP_IMPORTS = [
   BrowserModule,
   HttpModule,
   RouterModule.forRoot(routes, { useHash: false, preloadingStrategy: IdlePreload }),
   ReactiveFormsModule,
   IdlePreloadModule.forRoot(),
-  RouterStoreModule.connectRouter(),
   StoreModule.provideStore(rootReducer),
+  RouterStoreModule.connectRouter(),
+  StoreDevtoolsModule.instrumentOnlyWithExtension(),
   EffectsModule.run(SystemEffects),
-  STORE_DEV_TOOLS_IMPORTS,
-  StoreDevToolsModule,
   IonicModule.forRoot(AppComponent, { locationStrategy: 'path'})
 ];
 
