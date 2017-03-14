@@ -63,6 +63,35 @@ export class AppComponent  {
       this.store.dispatch(new SystemActions.SetDimensions(dimensions));
     });
 
+      this.initializeApp();
+      this.setupResizeListener();
+
+  }
+
+  initializeApp() {
+
+    let platform : string;
+    (this.platform._platforms.indexOf('core') !== -1 ? platform='web' : platform='native');
+    this.store.dispatch(new SystemActions.SetPlatform(platform));
+
+  }
+
+  setupResizeListener() {
+
+    window.addEventListener('resize', event => {
+      this.zone.run(() => {
+        this.resize$.next({
+          width: window.innerWidth,
+          height: window.innerHeight
+        });
+      });
+    });
+    this.resize$.debounceTime(500).subscribe((x)=> {
+      this.store.dispatch(new SystemActions.SetDimensions({
+        width: this.platform.width(),
+        height: this.platform.height()
+      }));
+    });
   }
 
 }

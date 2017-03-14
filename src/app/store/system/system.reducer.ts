@@ -1,5 +1,6 @@
 /* tslint:disable: no-switch-case-fall-through */
 import { Action } from '@ngrx/store';
+
 import { SystemActions, System } from './';
 
 export interface SystemState extends System {};

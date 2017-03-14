@@ -5,9 +5,11 @@ import { Action } from '@ngrx/store';
 import { Actions, Effect } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
 
+
 import { System, SystemActions } from './index';
 
 import { Platform } from 'ionic-angular';
+
 
 @Injectable()
 export class SystemEffects {

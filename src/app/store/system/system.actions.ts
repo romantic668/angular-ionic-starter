@@ -2,8 +2,6 @@ import { Action } from '@ngrx/store';
 import { type } from '../store-utils';
 import { System } from './system.model';
 
-import { Platform } from 'ionic-angular';
-
 export const ActionTypes = {
   SET_PLATFORM:           type('[System] Set platform'),
   SET_PLATFORM_SUCCESS:   type('[System] Set platform success'),
@@ -41,3 +39,4 @@ export type Actions
   | SetPlatformFail
   | SetDimensions
   | SetOrientation;
+
