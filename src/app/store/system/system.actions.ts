@@ -4,15 +4,15 @@ import { System } from './system.model';
 
 export const ActionTypes = {
   SET_PLATFORM:           type('[System] Set platform'),
-  SET_PLATFORM_SUCCESS:   type('[System] Set platform success'),
-  SET_PLATFORM_FAIL:      type('[System] Set platform fail'),
+  SET_PLATFORM_SUCCESS:   type('[System] [+++] Set platform success'),
+  SET_PLATFORM_FAIL:      type('[System] [xxx] Set platform fail'),
   SET_DIMENSIONS:         type('[System] Set dimensions'),
-  SET_ORIENTATION:        type('[System] Set orientation')
+  SET_VIEWPORT:           type('[System] Set viewport')
 };
 
 export class SetPlatform implements Action {
   type = ActionTypes.SET_PLATFORM;
-  constructor(public payload: string) {}
+  constructor(public payload: string[]) {}
 }
 export class SetPlatformSuccess implements Action {
   type = ActionTypes.SET_PLATFORM_SUCCESS;
@@ -28,8 +28,8 @@ export class SetDimensions implements Action {
   constructor(public payload: {width:number,height:number}) {}
 }
 
-export class SetOrientation implements Action {
-  type = ActionTypes.SET_ORIENTATION;
+export class SetViewport implements Action {
+  type = ActionTypes.SET_VIEWPORT;
   constructor(public payload: boolean) {}
 }
 
@@ -38,5 +38,5 @@ export type Actions
   | SetPlatformSuccess
   | SetPlatformFail
   | SetDimensions
-  | SetOrientation;
+  | SetViewport;
 
