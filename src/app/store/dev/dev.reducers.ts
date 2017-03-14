@@ -13,6 +13,7 @@ function stateSetter(reducer: ActionReducer<any>): ActionReducer<any> {
 }
 
 export const DEV_REDUCERS = [stateSetter, storeFreeze];
+
 if (['logger', 'both'].indexOf(STORE_DEV_TOOLS) !== -1 ) {
     DEV_REDUCERS.push(storeLogger());
 }

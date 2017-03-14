@@ -1,23 +1,12 @@
 /* tslint:disable: no-switch-case-fall-through */
 import { Action } from '@ngrx/store';
-import * as SystemActions from './system.actions';
+import { SystemActions, System } from './';
 
-export interface SystemState {
-  platform: string;
-  viewport: {
-    type: string;
-  };
-  dimensions:{
-    width: number;
-    height: number;
-  };
-};
+export interface SystemState extends System {};
 
 export const SystemStateInitial: SystemState = {
-  platform: 'web',
-  viewport: {
-    type: 'desktop'
-  },
+  platform: null,
+  isPortrait: true,
   dimensions:{
     width: 0,
     height: 0
@@ -37,6 +26,12 @@ export function SystemReducer(state = SystemStateInitial, action: SystemActions.
     case SystemActions.ActionTypes.SET_DIMENSIONS: {
       return Object.assign({}, state, {
         dimensions: action.payload
+      });
+    }
+
+    case SystemActions.ActionTypes.SET_ORIENTATION: {
+      return Object.assign({}, state, {
+        isPortrait: action.payload
       });
     }
 

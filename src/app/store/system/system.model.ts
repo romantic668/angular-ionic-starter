@@ -1,7 +1,7 @@
 export interface System {
-  platform: string;
-  viewport: {
-    type: string;
+  platform?: string;
+  isPortrait?: boolean;
+  dimensions?: {
     width: number;
     height: number;
   };
