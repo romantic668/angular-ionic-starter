@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { type } from '../store-utils';
+import { type } from '../utils';
 
 export const ActionTypes = {
   OPEN_SIDENAV:   type('[Layout] Open Sidenav'),

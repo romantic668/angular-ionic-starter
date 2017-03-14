@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { type } from '../store-utils';
+import { type } from '../utils';
 import { System } from './system.model';
 
 export const ActionTypes = {
