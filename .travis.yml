@@ -15,4 +15,4 @@ before_script:
 - sleep 3
 script:
 - npm run test:ci
-- npm run test:coverage
+- travis_retry npm run test:coverage

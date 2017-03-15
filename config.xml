@@ -3,7 +3,7 @@
     <name>KiteCS AIS</name>
     <description>Starter project with Angular and Ionic</description>
     <author email="hello@kemalyalcinkaya.co.uk" href="http://kemalyalcinkaya.co.uk">Kemal Yalcinkaya</author>
-    <content src="index.html" /> 
+    <content src="../../index.html" /> 
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
