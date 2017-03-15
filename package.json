@@ -32,7 +32,7 @@
     "pretest": "npm run lint",
     "test": "karma start",
     "test:once": "karma start",
-    "test:coverage": "coveralls < ./coverage/lcov.info",
+    "test:coverage": "coveralls < ./coverage/lcov.info -service=travis-ci",
     "test:ci": "npm run e2e:aot && npm run test:once",
     "webdriver-manager": "webdriver-manager",
     "webdriver:update": "npm run webdriver-manager update",
