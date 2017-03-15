@@ -18,6 +18,30 @@ export class SystemEffects {
     private platform: Platform
   ) {}
 
+  @Effect() initialize$: Observable<Action> = this.actions$
+    .ofType('[System] Initialize')
+    .map(action => action.payload)
+    .mergeMap(() => {
+        return [
+            new SystemActions.SetDimensions({ width:this.platform.width() , height:this.platform.height() }),
+            new SystemActions.SetViewport(this.platform.isPortrait()),
+            new SystemActions.SetPlatform(this.platform._platforms),
+            new SystemActions.InitializeSuccess(null)
+        ];
+    })
+    .catch(() => Observable.of({ type: '[System] [xxx] Initialize fail' }));
+
+    /*
+    
+  @Effect() login$ = this.actions
+    .ofType('[User] Login')
+    .switchMap(action => this.af.auth.login(action.payload)
+      .then(success=> this.router.navigate(['/']))
+      .then(response => ({ type: '[User] Login Success', payload: {} }))
+      .catch(() => Observable.of({ type: '[User] Login Fail' }))
+    );
+    */
+
   /*
   @Effect() initialize$: Observable<Action> = this.actions$
     .ofType('[System] Set platform')

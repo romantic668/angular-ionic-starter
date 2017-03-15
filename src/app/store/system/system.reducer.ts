@@ -58,6 +58,8 @@ export function SystemReducer(state = SystemStateInitial, action: SystemActions.
 
     case SystemActions.ActionTypes.SET_PLATFORM: {
 
+      console.log(action);
+
       let platformHere;
       if((action.payload as string[]).indexOf('core') !== -1) {
         platformHere = {device:'desktop', isBrowser:true};

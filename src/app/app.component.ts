@@ -50,9 +50,11 @@ export class AppComponent  {
   }
 
   initializeApp() {
-    this.store.dispatch(new SystemActions.SetDimensions({width:this.platform.width() , height:this.platform.height()}));
-    this.store.dispatch(new SystemActions.SetViewport(this.platform.isPortrait()));
-    this.store.dispatch(new SystemActions.SetPlatform(this.platform._platforms));
+    //this.store.dispatch(new SystemActions.SetDimensions({width:this.platform.width() , height:this.platform.height()}));
+    //this.store.dispatch(new SystemActions.SetViewport(this.platform.isPortrait()));
+    //this.store.dispatch(new SystemActions.SetPlatform(this.platform._platforms));
+
+    this.store.dispatch(new SystemActions.Initialize(null));
 
     this.routerDetails$.subscribe((route)=> {
       this.currentPath = route.path;
