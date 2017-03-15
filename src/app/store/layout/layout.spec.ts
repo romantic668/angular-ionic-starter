@@ -9,7 +9,7 @@ import {
   LayoutActions
 } from './index';
 
-describe('System store', () => {
+describe('Layout store', () => {
 
     let testbed: TestBed;
     let store: Store<LayoutState>;

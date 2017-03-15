@@ -1,4 +1,3 @@
-import { SetViewport } from '../layout/layout.actions';
 /* tslint:disable: no-switch-case-fall-through */
 import { Action } from '@ngrx/store';
 import { createSelector } from 'reselect';

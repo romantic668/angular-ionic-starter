@@ -14,7 +14,7 @@ export function LayoutReducer(state = LayoutStateInitial, action: LayoutActions.
 
   switch (action.type) {
 
-    case LayoutActions.ActionTypes.SET_DIMENSIONS: {
+    case LayoutActions.ActionTypes.SET_LAYOUT: {
       return Object.assign({}, state, {
         dimensions: action.payload
       });

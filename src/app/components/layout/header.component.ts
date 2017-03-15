@@ -40,7 +40,7 @@ export class HeaderComponent implements AfterViewChecked {
   }
 
   // Has performance costs. Revice this after moving to Ionic 3 / NG 4
-  // Because this menu toggle margin problem is a result of Ionic 2 
+  // Because this menu toggle margin problem is a result of Ionic 2
   // and NG 4 mismatch
   ngAfterViewChecked() {
     if(this._menuToggle)this._menuToggle.ngAfterContentInit();
