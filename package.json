@@ -19,7 +19,8 @@
     "dev:start": "npm run utils:webdev",
     "dev:start:hmr": "npm run utils:webdev:hmr",
     "dev:start:android": "cd cordova && cordova run android && cd ..",    
-    "prod:compile": "npm run clean:compile && npm run utils:ngc",
+    "compile": "npm run clean:compile && npm run compile:ngc",
+    "compile:ngc": "./node_modules/.bin/ngc -p tsconfig.aot.json",
     "prod:build:web": "npm run clean:dist && webpack",
     "prod:build:cordova": "npm run clean:cordova && webpack",
     "prod:build:ios": "cd cordova && cordova build ios && cd ..",
@@ -40,7 +41,7 @@
     "pree2e:only": "npm run webdriver:update -- --standalone",
     "e2e": "npm-run-all -p -r e2e:server e2e:only",
     "e2e:testall": "npm run e2e:jit && npm run e2e:aot",
-    "e2e:aot": "npm run clean:compile && npm run utils:ngc && npm run prod:build:web && npm run e2e",
+    "e2e:aot": "npm run clean:compile && npm run compile:ngc && npm run prod:build:web && npm run e2e",
     "e2e:jit": "npm run build:prod:e2e && npm run e2e",
     "e2e:only": "npm run protractor",
     "e2e:live": "npm run e2e -- --elementExplorer",
@@ -48,8 +49,7 @@
     "utils:rimraf": "rimraf",
     "utils:webdev": "webpack-dev-server",
     "utils:webdev:hmr": "npm run utils:webdev -- --inline --hot",
-    "utils:webpack": "webpack",
-    "utils:ngc": "./node_modules/.bin/ngc -p tsconfig.aot.json"
+    "utils:webpack": "webpack"
   },
   "dependencies": {
     "@angular/common": "4.0.0-rc.1",

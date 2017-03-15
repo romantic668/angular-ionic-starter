@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { Location } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Platform, ToastController } from 'ionic-angular';
+import { Router } from '@angular/router';
+import { Platform } from 'ionic-angular';
 
 import { Store } from '@ngrx/store';
 import { AppState } from './store/root.reducer';
@@ -9,7 +8,7 @@ import { SystemActions } from './store/system';
 
 import { Subject } from 'rxjs/Subject';
 
-import { go, replace, search, show, back, forward } from '@ngrx/router-store';
+import { go, back } from '@ngrx/router-store';
 
 @Component({
   selector: 'ion-app',
@@ -37,11 +36,8 @@ export class AppComponent  {
 
   constructor(
     private platform: Platform,
-    // private route: ActivatedRoute,
     private router: Router,
-    private location: Location,
-    private store: Store<AppState>,
-    private toastCtrl: ToastController
+    private store: Store<AppState>
   ) {
 
     platform.ready().then(() => {
@@ -49,30 +45,6 @@ export class AppComponent  {
       this.initializeApp();
       this.setupResizeListener();
 
-      this.store.dispatch(go(['/about', {}], {}));
-      this.routerDetails$.subscribe((route)=> {
-        console.log(route);
-        this.currentPath = route.path;
-      });
-
-      /*
-      console.log('Platform ready is running on browser too');
-      let toast = this.toastCtrl.create({
-        message: 'Platform is ready',
-        duration: 10000
-      });
-      toast.present();
-      */
-
-
-      this.platform.registerBackButtonAction((event) => {
-
-        console.log('Back button clicked');
-        console.log(this.currentPath);
-
-        this.location.back();
-
-       },1);
     });
 
   }
@@ -81,6 +53,15 @@ export class AppComponent  {
     this.store.dispatch(new SystemActions.SetDimensions({width:this.platform.width() , height:this.platform.height()}));
     this.store.dispatch(new SystemActions.SetViewport(this.platform.isPortrait()));
     this.store.dispatch(new SystemActions.SetPlatform(this.platform._platforms));
+
+    this.routerDetails$.subscribe((route)=> {
+      this.currentPath = route.path;
+    });
+
+    // Hardware back button only applicable to Android
+    this.platform.registerBackButtonAction((event) => {
+      (this.currentPath === '/' ? this.platform.exitApp() : this.store.dispatch(back()));
+    },1);
   }
 
   setupResizeListener() {
