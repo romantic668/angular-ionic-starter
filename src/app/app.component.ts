@@ -1,4 +1,4 @@
-import { Component, ViewChild, NgZone } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Platform, Content } from 'ionic-angular';
 
@@ -34,8 +34,7 @@ export class AppComponent  {
     private platform: Platform,
     private route: ActivatedRoute,
     private router: Router,
-    private store: Store<AppState>,
-    private zone: NgZone
+    private store: Store<AppState>
   ) {
 
     this.initializeApp();
@@ -51,17 +50,11 @@ export class AppComponent  {
 
   setupResizeListener() {
 
-    // Angular has a problem with listening resize event as an observable
-    // which prevents using debounceTime on the window.resize event
-    // This is the workaround:
-    // https://github.com/angular/angular/issues/9060
     window.addEventListener('resize', event => {
-      //this.zone.run(() => {
-        this.resize$.next({
-          width: window.innerWidth,
-          height: window.innerHeight
-        });
-      //});
+      this.resize$.next({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
     });
     this.resize$.debounceTime(1000).subscribe((dimensions:{width:number,height:number})=> {
       this.store.dispatch(new SystemActions.SetDimensions(dimensions));

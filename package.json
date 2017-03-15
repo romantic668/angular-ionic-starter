@@ -48,7 +48,7 @@
     "utils:webdev": "webpack-dev-server",
     "utils:webdev:hmr": "npm run utils:webdev -- --inline --hot",
     "utils:webpack": "webpack",
-    "utils:ngc": "./node_modules/.bin/ngc -p tsconfig.aot.json"    
+    "utils:ngc": "./node_modules/.bin/ngc -p tsconfig.aot.json"
   },
   "dependencies": {
     "@angular/common": "4.0.0-rc.1",
@@ -83,6 +83,7 @@
     "ionicons": "^3.0.0",
     "methods": "1.1.2",
     "ngrx-store-freeze": "0.1.9",
+    "reselect": "^2.5.4",
     "rxjs": "5.2.0",
     "zone.js": "0.8.1"
   },

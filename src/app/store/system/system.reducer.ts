@@ -1,5 +1,7 @@
+import { SetViewport } from '../layout/layout.actions';
 /* tslint:disable: no-switch-case-fall-through */
 import { Action } from '@ngrx/store';
+import { createSelector } from 'reselect';
 
 import { SystemActions, System } from './';
 
@@ -32,14 +34,16 @@ export function SystemReducer(state = SystemStateInitial, action: SystemActions.
 
     case SystemActions.ActionTypes.SET_VIEWPORT: {
 
-      // Breakpoints taken from Ionic CSS responsive breakpoints
-      // https://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
+      // Breakpoints taken from Ionic CSS responsive grid layout breakpoints
+      // https://ionicframework.com/docs/v2/api/components/grid/Grid/
       let sizeHere;
-      if(state.dimensions.width <= 567) {
+      if(state.dimensions.width < 576) {
+        sizeHere = 'xs';
+      } else if (state.dimensions.width < 768) {
         sizeHere = 'sm';
-      } else if (state.dimensions.width <= 767) {
+      } else if (state.dimensions.width < 992) {
         sizeHere = 'md';
-      } else if (state.dimensions.width <= 1023) {
+      } else if (state.dimensions.width < 1200) {
         sizeHere = 'lg';
       } else {
         sizeHere = 'xl';
@@ -77,3 +81,21 @@ export function SystemReducer(state = SystemStateInitial, action: SystemActions.
   }
 
 }
+
+export const getPlatform = (state: SystemState) => state.platform;
+
+export const getViewport = (state: SystemState) => state.viewport;
+
+export const getDimensions = (state: SystemState) => state.dimensions;
+
+export const getSystemDetails =
+  createSelector(getPlatform, getViewport, getDimensions,
+  (platform, viewport, dimensions) => {
+    return `Running on ${platform.device}
+            and a ${viewport.size} screen with
+            ${dimensions.width} x ${dimensions.height}px
+            resolution. 
+            Browser: ${platform.isBrowser}
+            Portrait: ${viewport.isPortrait}
+            `;
+});
