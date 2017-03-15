@@ -174,7 +174,8 @@
       "@angular/platform-server",
       "@angular/router",
       "@angular/tsc-wrapped",
-      "protractor"
+      "protractor",
+      "karma-webpack"
     ]
   },
   "engines": {
