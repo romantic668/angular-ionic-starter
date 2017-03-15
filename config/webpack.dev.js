@@ -15,10 +15,6 @@ const {
 } = require('webpack');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const COPY_FOLDERS = [
-  { from: root('src/app/assets'), to: 'assets' },
-  { from: 'dll' }
-];
 
 let config = Object.assign({});
 
@@ -72,8 +68,11 @@ config.plugins.push(
     context: '.',
     manifest: require(root('./dll/vendor-manifest.json'))
   }),
-  new CopyWebpackPlugin(COPY_FOLDERS, { ignore: ['*dist_root/*'] }),
-  new CopyWebpackPlugin([{ from: root('src/app/assets/dist_root') }])  
+  new CopyWebpackPlugin([
+    { from: 'dll' },
+    { from: root('src/app/assets/dist_root') },
+    { from: root('src/app/assets'), to: 'assets' }
+  ])  
 );
 
 config.output = {
@@ -82,3 +81,10 @@ config.output = {
 };
 
 module.exports = config;
+
+/*
+const COPY_FOLDERS = [
+  { from: root('src/app/assets'), to: 'assets' },
+  { from: 'dll' }
+];
+*/

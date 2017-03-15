@@ -18,6 +18,7 @@
     "dev:build:dll": "npm run clean:dll && webpack",
     "dev:start": "npm run utils:webdev",
     "dev:start:hmr": "npm run utils:webdev:hmr",
+    "dev:start:android": "cd cordova && cordova run android && cd ..",    
     "prod:compile": "npm run clean:compile && npm run utils:ngc",
     "prod:build:web": "npm run clean:dist && webpack",
     "prod:build:cordova": "npm run clean:cordova && webpack",

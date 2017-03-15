@@ -5,7 +5,7 @@ import { AppState } from '../store/root.reducer';
 
 @Component({
   template: `
-    <ais-header pageTitle="About"></ais-header>
+    <ais-header pageTitle="About Vay Vay Vay"></ais-header>
     <ion-content padding class="marginTopAdjusted">
       <ion-list>
         <ion-item>

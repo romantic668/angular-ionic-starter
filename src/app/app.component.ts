@@ -1,12 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Platform, Content } from 'ionic-angular';
+import { Platform, ToastController } from 'ionic-angular';
 
 import { Store } from '@ngrx/store';
 import { AppState } from './store/root.reducer';
 import { SystemActions } from './store/system';
 
 import { Subject } from 'rxjs/Subject';
+
+import { go, replace, search, show, back, forward } from '@ngrx/router-store';
 
 @Component({
   selector: 'ion-app',
@@ -29,16 +32,48 @@ import { Subject } from 'rxjs/Subject';
 export class AppComponent  {
 
   resize$ = new Subject();
+  routerDetails$ = this.store.select(store => store.router);
+  currentPath;
 
   constructor(
     private platform: Platform,
-    private route: ActivatedRoute,
+    // private route: ActivatedRoute,
     private router: Router,
-    private store: Store<AppState>
+    private location: Location,
+    private store: Store<AppState>,
+    private toastCtrl: ToastController
   ) {
 
-    this.initializeApp();
-    this.setupResizeListener();
+    platform.ready().then(() => {
+
+      this.initializeApp();
+      this.setupResizeListener();
+
+      this.store.dispatch(go(['/about', {}], {}));
+      this.routerDetails$.subscribe((route)=> {
+        console.log(route);
+        this.currentPath = route.path;
+      });
+
+      /*
+      console.log('Platform ready is running on browser too');
+      let toast = this.toastCtrl.create({
+        message: 'Platform is ready',
+        duration: 10000
+      });
+      toast.present();
+      */
+
+
+      this.platform.registerBackButtonAction((event) => {
+
+        console.log('Back button clicked');
+        console.log(this.currentPath);
+
+        this.location.back();
+
+       },1);
+    });
 
   }
 
