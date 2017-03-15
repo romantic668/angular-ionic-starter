@@ -39,7 +39,7 @@ css properly. Check components from time to time and remove the problematic ones
 - protractor: locked to 5.0.0 (on 02/03/17 the latest version was 5.1.1) : Protractor above 5.0.0 doesnt work with firefox
 browser on Travis. For firefox, a flag marionette:false also needs to be set to use legacy Firefox version (<v48) (works ok on Windows dev machine)
 - @angular packages. Waiting for 4 release on 22/03/17
-- karma-webpack: locked to 2.0.2 (on 15/03/17 the latest version was 2.0.3) : Coveralls package gives a 540 error on Travis CI after this update. See Travis build (#154)
+- ~~karma-webpack: locked to 2.0.2 (on 15/03/17 the latest version was 2.0.3) : Coveralls package gives a 540 error on Travis CI after this update. See Travis build (#154)~~
 
 ### License
 
