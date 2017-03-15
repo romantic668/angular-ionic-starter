@@ -1,4 +1,4 @@
-import { Component, ViewChild, NgZone } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Platform, Content } from 'ionic-angular';
 
@@ -10,29 +10,31 @@ import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'ion-app',
+  styles:[`
+    #mainContent {
+      width:100%;
+    }  
+  `],
   template: `
     <ion-split-pane>
       <ion-menu [content]="mainContent" swipeEnabled="true">
         <ais-menu></ais-menu>
       </ion-menu>
-      <ais-header></ais-header>
-      <ion-content #mainContent padding class="marginTopAdjusted">
-        <router-outlet></router-outlet>       
-      </ion-content>    
+      <div id="mainContent" main #mainContent>
+        <router-outlet></router-outlet>            
+      </div> 
     </ion-split-pane>
   `
 })
 export class AppComponent  {
 
   resize$ = new Subject();
-  screenWidth = 'fullscreen';
 
   constructor(
     private platform: Platform,
     private route: ActivatedRoute,
     private router: Router,
-    private store: Store<AppState>,
-    private zone: NgZone
+    private store: Store<AppState>
   ) {
 
     this.initializeApp();
@@ -41,57 +43,23 @@ export class AppComponent  {
   }
 
   initializeApp() {
-    let platformString : string;
-    (this.platform._platforms.indexOf('core') !== -1 ? platformString='web' : platformString='native');
-    this.store.dispatch(new SystemActions.SetPlatform(platformString));
+    this.store.dispatch(new SystemActions.SetDimensions({width:this.platform.width() , height:this.platform.height()}));
+    this.store.dispatch(new SystemActions.SetViewport(this.platform.isPortrait()));
+    this.store.dispatch(new SystemActions.SetPlatform(this.platform._platforms));
   }
 
   setupResizeListener() {
 
-    // Angular has a problem with listening resize event as an observable
-    // This is the workaround:
-    // https://github.com/angular/angular/issues/9060
     window.addEventListener('resize', event => {
-      this.zone.run(() => {
-        this.resize$.next({
-          width: window.innerWidth,
-          height: window.innerHeight
-        });
+      this.resize$.next({
+        width: window.innerWidth,
+        height: window.innerHeight
       });
     });
     this.resize$.debounceTime(1000).subscribe((dimensions:{width:number,height:number})=> {
       this.store.dispatch(new SystemActions.SetDimensions(dimensions));
+      this.store.dispatch(new SystemActions.SetViewport(this.platform.isPortrait()));
     });
 
-      this.initializeApp();
-      this.setupResizeListener();
-
   }
-
-  initializeApp() {
-
-    let platform : string;
-    (this.platform._platforms.indexOf('core') !== -1 ? platform='web' : platform='native');
-    this.store.dispatch(new SystemActions.SetPlatform(platform));
-
-  }
-
-  setupResizeListener() {
-
-    window.addEventListener('resize', event => {
-      this.zone.run(() => {
-        this.resize$.next({
-          width: window.innerWidth,
-          height: window.innerHeight
-        });
-      });
-    });
-    this.resize$.debounceTime(500).subscribe((x)=> {
-      this.store.dispatch(new SystemActions.SetDimensions({
-        width: this.platform.width(),
-        height: this.platform.height()
-      }));
-    });
-  }
-
 }

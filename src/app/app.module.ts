@@ -1,11 +1,10 @@
 import { ApplicationRef, NgModule } from '@angular/core';
-
-import { IonicApp } from 'ionic-angular';
-
-import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
+import { HMRAppModule } from './store/utils';
 
 import { Store } from '@ngrx/store';
 import { AppState } from './store/root.reducer';
+
+import { IonicApp } from 'ionic-angular';
 
 import {
   APP_DECLARATIONS,
@@ -22,36 +21,10 @@ import {
   bootstrap: [IonicApp]
 })
 
-export class AppModule {
+export class AppModule extends HMRAppModule {
 
-  constructor(public appRef: ApplicationRef, private _store: Store<AppState>) { }
-
-  hmrOnInit(store) {
-    if (!store || !store.rootState) return;
-
-    if (store.rootState) {
-      this._store.dispatch({
-        type: '[HMR] Set root state',
-        payload: store.rootState
-      });
-    }
-
-    if ('restoreInputValues' in store) { store.restoreInputValues(); }
-    this.appRef.tick();
-    Object.keys(store).forEach(prop => delete store[prop]);
-  }
-
-  hmrOnDestroy(store) {
-    const cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
-    this._store.take(1).subscribe(s => store.rootState = s);
-    store.disposeOldHosts = createNewHosts(cmpLocation);
-    store.restoreInputValues = createInputTransfer();
-    removeNgStyles();
-  }
-
-  hmrAfterDestroy(store) {
-    store.disposeOldHosts();
-    delete store.disposeOldHosts;
+  constructor (public appRef: ApplicationRef, public _store: Store<AppState>) {
+    super(appRef,_store);
   }
 
 }

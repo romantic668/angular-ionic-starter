@@ -7,7 +7,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routing';
 
-import { IonicApp, IonicModule } from 'ionic-angular';
+import { IonicModule } from 'ionic-angular';
 
 import { IdlePreload, IdlePreloadModule } from '@angularclass/idle-preload';
 

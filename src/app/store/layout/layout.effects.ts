@@ -5,17 +5,14 @@ import { Action } from '@ngrx/store';
 import { Actions, Effect } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
 
+import { Layout, LayoutActions } from './index';
 
-import { System, SystemActions } from './index';
-
-import { Platform } from 'ionic-angular';
 
 
 @Injectable()
-export class SystemEffects {
+export class LayoutEffects {
   constructor(
-    private actions$: Actions,
-    private platform: Platform
+    private actions$: Actions
   ) {}
 
   /*

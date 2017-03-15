@@ -1,6 +1,12 @@
 export interface System {
-  platform?: string;
-  isPortrait?: boolean;
+  platform?: {
+    device?: string;
+    isBrowser?: boolean;
+  };
+  viewport?: {
+    size?: string;
+    isPortrait?: boolean;
+  };
   dimensions?: {
     width: number;
     height: number;

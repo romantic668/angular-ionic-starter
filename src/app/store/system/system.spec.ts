@@ -9,6 +9,8 @@ import {
   SystemActions
 } from './index';
 
+/*
+
 describe('System store', () => {
 
     let testbed: TestBed;
@@ -72,3 +74,5 @@ describe('System store', () => {
     });
 
 });
+
+*/
