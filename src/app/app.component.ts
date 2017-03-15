@@ -1,12 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Platform, Content } from 'ionic-angular';
+import { Router } from '@angular/router';
+import { Platform } from 'ionic-angular';
 
 import { Store } from '@ngrx/store';
 import { AppState } from './store/root.reducer';
 import { SystemActions } from './store/system';
 
 import { Subject } from 'rxjs/Subject';
+
+import { go, back } from '@ngrx/router-store';
 
 @Component({
   selector: 'ion-app',
@@ -29,16 +31,21 @@ import { Subject } from 'rxjs/Subject';
 export class AppComponent  {
 
   resize$ = new Subject();
+  routerDetails$ = this.store.select(store => store.router);
+  currentPath;
 
   constructor(
     private platform: Platform,
-    private route: ActivatedRoute,
     private router: Router,
     private store: Store<AppState>
   ) {
 
-    this.initializeApp();
-    this.setupResizeListener();
+    platform.ready().then(() => {
+
+      this.initializeApp();
+      this.setupResizeListener();
+
+    });
 
   }
 
@@ -46,6 +53,15 @@ export class AppComponent  {
     this.store.dispatch(new SystemActions.SetDimensions({width:this.platform.width() , height:this.platform.height()}));
     this.store.dispatch(new SystemActions.SetViewport(this.platform.isPortrait()));
     this.store.dispatch(new SystemActions.SetPlatform(this.platform._platforms));
+
+    this.routerDetails$.subscribe((route)=> {
+      this.currentPath = route.path;
+    });
+
+    // Hardware back button only applicable to Android
+    this.platform.registerBackButtonAction((event) => {
+      (this.currentPath === '/' ? this.platform.exitApp() : this.store.dispatch(back()));
+    },1);
   }
 
   setupResizeListener() {

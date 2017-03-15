@@ -14,7 +14,7 @@ export const views: Object[] = [
         <ion-title>KiteCS AIS</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content padding>
+    <ion-content padding class="marginTopAdjusted">
       <ion-list>
         <ion-item menuClose *ngFor="let view of views">
           <a [routerLink]="view.link" routerLinkActive="active-link">

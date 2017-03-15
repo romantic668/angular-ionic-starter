@@ -2,15 +2,16 @@ import { Component } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/root.reducer';
-import { System } from '../store/system';
-
-import { Observable } from 'rxjs';
 
 @Component({
   template: `
-    <ais-header pageTitle="About"></ais-header>
+    <ais-header pageTitle="About Vay Vay Vay"></ais-header>
     <ion-content padding class="marginTopAdjusted">
       <ion-list>
+        <ion-item>
+          <p>Route</p>
+          <p item-right>{{(routerDetails$ | async).path}}</p>
+        </ion-item>
         <ion-item>
           <p>Platform</p>
           <p item-right>{{(systemDetails$ | async).platform.device}}</p>
@@ -36,7 +37,8 @@ import { Observable } from 'rxjs';
 
 export class AboutPage {
 
-  systemDetails$: Observable<System> = this.store.select(store => store.system);
+  routerDetails$ = this.store.select(store => store.router);
+  systemDetails$ = this.store.select(store => store.system);
 
   constructor(private store:Store<AppState>) {}
 
