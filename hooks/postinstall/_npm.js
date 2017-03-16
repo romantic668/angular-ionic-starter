@@ -15,7 +15,7 @@ module.exports = {
     return new Promise(function (resolve, reject) {
 
         console.log("_postinstall > NPM: AOT compilation has started. Please wait..");
-        require('child_process').execSync('npm run prod:compile', {stdio:[0,1,2]});
+        require('child_process').execSync('npm run compile', {stdio:[0,1,2]});
         console.log("_postinstall > NPM: AOT compilation completed");
         resolve();
 
