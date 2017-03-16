@@ -43,29 +43,24 @@ export class AppComponent  {
     platform.ready().then(() => {
 
       this.initializeApp();
-      this.setupResizeListener();
+      this.setupListeners();
 
     });
 
   }
 
   initializeApp() {
-    this.store.dispatch(new SystemActions.SetDimensions({width:this.platform.width() , height:this.platform.height()}));
-    this.store.dispatch(new SystemActions.SetViewport(this.platform.isPortrait()));
-    this.store.dispatch(new SystemActions.SetPlatform(this.platform._platforms));
+    this.store.dispatch(new SystemActions.Initialize(null));
+  }
 
+  setupListeners() {
+
+    // Active route
     this.routerDetails$.subscribe((route)=> {
       this.currentPath = route.path;
     });
 
-    // Hardware back button only applicable to Android
-    this.platform.registerBackButtonAction((event) => {
-      (this.currentPath === '/' ? this.platform.exitApp() : this.store.dispatch(back()));
-    },1);
-  }
-
-  setupResizeListener() {
-
+    // Window resize
     window.addEventListener('resize', event => {
       this.resize$.next({
         width: window.innerWidth,
@@ -76,6 +71,11 @@ export class AppComponent  {
       this.store.dispatch(new SystemActions.SetDimensions(dimensions));
       this.store.dispatch(new SystemActions.SetViewport(this.platform.isPortrait()));
     });
+
+    // (Android only) Hardware back button
+    this.platform.registerBackButtonAction((event) => {
+      (this.currentPath === '/' ? this.platform.exitApp() : this.store.dispatch(back()));
+    },1);
 
   }
 }
