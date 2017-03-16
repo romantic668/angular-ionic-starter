@@ -1,6 +1,5 @@
 /* tslint:disable: no-switch-case-fall-through */
 import { Action } from '@ngrx/store';
-import { createSelector } from 'reselect';
 
 import { SystemActions, System } from './';
 
@@ -58,8 +57,6 @@ export function SystemReducer(state = SystemStateInitial, action: SystemActions.
 
     case SystemActions.ActionTypes.SET_PLATFORM: {
 
-      console.log(action);
-
       let platformHere;
       if((action.payload as string[]).indexOf('core') !== -1) {
         platformHere = {device:'desktop', isBrowser:true};
@@ -82,21 +79,3 @@ export function SystemReducer(state = SystemStateInitial, action: SystemActions.
   }
 
 }
-
-export const getPlatform = (state: SystemState) => state.platform;
-
-export const getViewport = (state: SystemState) => state.viewport;
-
-export const getDimensions = (state: SystemState) => state.dimensions;
-
-export const getSystemDetails =
-  createSelector(getPlatform, getViewport, getDimensions,
-  (platform, viewport, dimensions) => {
-    return `Running on ${platform.device}
-            and a ${viewport.size} screen with
-            ${dimensions.width} x ${dimensions.height}px
-            resolution. 
-            Browser: ${platform.isBrowser}
-            Portrait: ${viewport.isPortrait}
-            `;
-});
