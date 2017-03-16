@@ -40,6 +40,8 @@ css properly. Check components from time to time and remove the problematic ones
 browser on Travis. For firefox, a flag marionette:false also needs to be set to use legacy Firefox version (<v48) (works ok on Windows dev machine)
 - @angular packages. Waiting for 4 release on 22/03/17
 - ~~karma-webpack: locked to 2.0.2 (on 15/03/17 the latest version was 2.0.3) : Coveralls package gives a 540 error on Travis CI after this update. See Travis build (#154)~~
+- zone.js: locked to 0.8.3 (on 16/03/17 the latest version was 0.8.4) : Brings some errors in the console log. Not critical
+- @types/jasmine : locked to 2.5.45 (on 16/03/17 the latest version was 2/5/46) : It breaks the e2e test because of a conflict with ts-node library. 
 
 ### License
 
