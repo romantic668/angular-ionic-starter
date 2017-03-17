@@ -9,7 +9,7 @@
   },
   "scripts": {
     "postinstall": "node hooks/postinstall",
-    "clean": "npm run clean:compile && npm run utils:rimraf -- doc typings cordova coverage dist .awcache dll",
+    "clean": "npm run clean:compile && npm run utils:rimraf -- docs typings cordova coverage dist .awcache dll",
     "clean:dist": "npm run utils:rimraf -- dist .awcache",
     "clean:dll": "npm run utils:rimraf -- dll",
     "clean:compile": "npm run utils:rimraf -- \"compiled\" ",
@@ -18,7 +18,7 @@
     "dev:build:dll": "npm run clean:dll && webpack",
     "dev:start": "npm run utils:webdev",
     "dev:start:hmr": "npm run utils:webdev:hmr",
-    "dev:start:android": "cd cordova && cordova run android && cd ..",    
+    "dev:start:android": "cd cordova && cordova run android && cd ..",
     "compile": "npm run clean:compile && npm run compile:ngc",
     "compile:ngc": "./node_modules/.bin/ngc -p tsconfig.aot.json",
     "prod:build:web": "npm run clean:dist && webpack",
@@ -49,7 +49,8 @@
     "utils:rimraf": "rimraf",
     "utils:webdev": "webpack-dev-server",
     "utils:webdev:hmr": "npm run utils:webdev -- --inline --hot",
-    "utils:webpack": "webpack"
+    "utils:webpack": "webpack",
+    "utils:compodoc": "./node_modules/.bin/compodoc src -p ./tsconfig.json -d docs"
   },
   "dependencies": {
     "@angular/common": "4.0.0-rc.1",
@@ -105,6 +106,7 @@
     "autoprefixer": "^6.7.7",
     "awesome-typescript-loader": "~3.1.2",
     "codelyzer": "^3.0.0-beta.3",
+    "compodoc": "0.0.41",
     "compression-webpack-plugin": "~0.3.1",
     "copy-webpack-plugin": "~4.0.0",
     "cordova": "^6.5.0",
