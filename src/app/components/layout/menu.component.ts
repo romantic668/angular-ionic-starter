@@ -33,16 +33,3 @@ export class MenuComponent {
   constructor(public route: ActivatedRoute, public router: Router) {}
 
 }
-
-/*
-
-      <ion-list>
-        <a [routerLink]="view.link" routerLinkActive="active-link" *ngFor="let view of views">
-          <ion-item menuClose >
-            {{view.name}}
-          </ion-item>
-        </a>
-      </ion-list>
-
-*/
-

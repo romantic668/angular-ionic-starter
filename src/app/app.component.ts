@@ -40,6 +40,8 @@ export class AppComponent  {
     private store: Store<AppState>
   ) {
 
+    this.router.navigate(['']);
+
     platform.ready().then(() => {
 
       this.initializeApp();
