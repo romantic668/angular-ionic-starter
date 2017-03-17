@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { Platform } from 'ionic-angular';
 
@@ -7,8 +8,6 @@ import { AppState } from './store/root.reducer';
 import { SystemActions } from './store/system';
 
 import { Subject } from 'rxjs/Subject';
-
-import { go, back } from '@ngrx/router-store';
 
 @Component({
   selector: 'ion-app',
@@ -37,6 +36,7 @@ export class AppComponent  {
   constructor(
     private platform: Platform,
     private router: Router,
+    private location: Location,
     private store: Store<AppState>
   ) {
 
@@ -74,7 +74,7 @@ export class AppComponent  {
 
     // (Android only) Hardware back button
     this.platform.registerBackButtonAction((event) => {
-      (this.currentPath === '/' ? this.platform.exitApp() : this.store.dispatch(back()));
+      (this.currentPath === '/' ? this.platform.exitApp() : this.location.back());
     },1);
 
   }

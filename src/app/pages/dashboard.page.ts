@@ -14,5 +14,6 @@ import { Component } from '@angular/core';
 export class DashboardPage {
   call() {
     console.log('Thanks');
+
   }
 }

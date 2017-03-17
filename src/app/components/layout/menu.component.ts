@@ -17,7 +17,7 @@ export const views: Object[] = [
     <ion-content padding class="marginTopAdjusted">
       <ion-list>
         <ion-item menuClose *ngFor="let view of views">
-          <a [routerLink]="view.link" routerLinkActive="active-link">
+          <a [routerLink]="view.link" routerLinkActive="active-link" class="is-displayBlock">
             {{view.name}}
           </a>
         </ion-item>
@@ -33,3 +33,16 @@ export class MenuComponent {
   constructor(public route: ActivatedRoute, public router: Router) {}
 
 }
+
+/*
+
+      <ion-list>
+        <a [routerLink]="view.link" routerLinkActive="active-link" *ngFor="let view of views">
+          <ion-item menuClose >
+            {{view.name}}
+          </ion-item>
+        </a>
+      </ion-list>
+
+*/
+

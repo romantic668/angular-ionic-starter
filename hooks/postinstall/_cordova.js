@@ -25,10 +25,12 @@ module.exports = {
   copy_config: function() {
     return new Promise(function (resolve, reject) {
 
-        fsp.copy('config.xml', 'cordova/config.xml', {overwrite:true}).then(function(){
-            console.log("_postinstall > Cordova: config.xml copied from root to cordova directory");
-            resolve();  
-        }).catch(err=>console.log(err));
+      fsp.copy('config.xml', 'cordova/config.xml', {overwrite:true}).then(function(){
+        fsp.copy('ionic.config.json', 'cordova/ionic.config.json', {overwrite:true}).then(function(){
+          console.log("_postinstall > Cordova: config.xml and ionic.config.json copied from root to cordova directory");
+          resolve();
+        }).catch(err=>console.log(err));  
+      }).catch(err=>console.log(err));
 
     });
   },  
