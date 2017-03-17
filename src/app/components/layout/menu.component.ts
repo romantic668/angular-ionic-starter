@@ -33,3 +33,4 @@ export class MenuComponent {
   constructor(public route: ActivatedRoute, public router: Router) {}
 
 }
+
