@@ -40,6 +40,7 @@ export class AppComponent  {
     private store: Store<AppState>
   ) {
 
+    // Fixing Cordova apps initial route problem
     this.router.navigate(['']);
 
     platform.ready().then(() => {
