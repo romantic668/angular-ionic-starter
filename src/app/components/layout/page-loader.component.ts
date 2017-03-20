@@ -25,7 +25,7 @@ import { AppState } from '../../store/root.reducer';
 export class PageLoaderComponent {
 
   layoutDetails$ = this.store.select(store => store.layout.isPageLoaderShown);
-  // loaderShown : boolean = true;
+  loaderShown : boolean = true;
   loaderExists: boolean = false;
 
   constructor(private store: Store<AppState>) {
@@ -37,7 +37,7 @@ export class PageLoaderComponent {
 
   }
 
-  /* NG 4 Animations not working, need documentation
+  // NG 4 Animations not working, need documentation
   //
   //
   removeComponent($event) {
@@ -46,6 +46,5 @@ export class PageLoaderComponent {
       this.loaderExists = true;
     }
   }
-  */
 
 }
