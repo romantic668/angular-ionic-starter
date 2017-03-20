@@ -45,6 +45,7 @@ export class AppComponent  {
 
     platform.ready().then(() => {
 
+      console.log(this.platform);
       this.initializeApp();
       this.setupListeners();
 

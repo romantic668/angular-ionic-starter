@@ -21,15 +21,15 @@ export class SystemEffects {
 
   @Effect() initialize$: Observable<Action> = this.actions$
     .ofType('[System] Initialize')
-    .mergeMap(() => {
+    .switchMap(() => {
         return [
-            // new SystemActions.SetDimensions({ width:this.platform.width() , height:this.platform.height() }),
-            // new SystemActions.SetViewport(this.platform.isPortrait()),
-            // new SystemActions.SetPlatform(this.platform._platforms),
+            new SystemActions.SetDimensions({ width:this.platform.width() , height:this.platform.height() }),
+            new SystemActions.SetViewport(this.platform.isPortrait()),
+            new SystemActions.SetPlatform(this.platform._platforms),
             new SystemActions.InitializeSuccess()
         ];
     })
-    .catch(() => Observable.of({ type: '[System] [xxx] Initialize fail' }));
+    .catch((err) => Observable.of({ type: '[System] [xxx] Initialize fail', payload: err }));
 
 
   /*

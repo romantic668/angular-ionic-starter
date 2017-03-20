@@ -2,6 +2,7 @@ import { getTestBed, TestBed, inject } from '@angular/core/testing';
 import { StoreModule, Store } from '@ngrx/store';
 import { EffectsTestingModule, EffectsRunner } from '@ngrx/effects/testing';
 import { Platform } from 'ionic-angular';
+import { PlatformMock } from '../mocks';
 
 import {
   SystemState,
@@ -22,13 +23,11 @@ describe('System store', () => {
                 EffectsTestingModule
             ],
             providers:[
-              SystemEffects, Platform
-              /*
+              SystemEffects,
               {
                 provide: Platform,
-                useValue: jasmine.createSpyObj('platfrom', ['open', 'query', 'insert', 'executeWrite'])
+                useClass: PlatformMock
               }
-              */
             ]
         });
         testbed = getTestBed();
@@ -47,19 +46,22 @@ describe('System store', () => {
         expect(store).toBeTruthy();
     });
 
+    /*
     describe('- Effects', () => {
 
       it('initialization$ effect start and finish successfully', () => {
         const {runner, systemEffects, platform} = setup();
-        runner.queue(new SystemActions.Initialize(null));
+
+        runner.queue(new SystemActions.Initialize());
         systemEffects.initialize$.subscribe(result => {
           console.log(result);
-          expect(result).toEqual({ type: '[System] [+++] Initialize success' });
-          //expect(result).not.toEqual({ type: 'INITIALIZE_FAIL' });
+          expect(result).toBeAnInstanceOf(new SystemActions.InitializeSuccess());
         });
+
       });
 
 
     });
+    */
 
 });

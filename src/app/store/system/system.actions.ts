@@ -19,6 +19,7 @@ export class InitializeSuccess implements Action {
 }
 export class InitializeFail implements Action {
   type = ActionTypes.INITIALIZE_FAIL;
+  constructor(public payload:any) {}
 }
 
 export class SetPlatform implements Action {
