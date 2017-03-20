@@ -9,7 +9,8 @@ import { Platform } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 import { AppState } from '../root.reducer';
 
-import { System, SystemActions } from './index';
+import { SystemActions } from './index';
+import { LayoutActions } from '../layout/index';
 
 @Injectable()
 export class SystemEffects {
@@ -26,6 +27,7 @@ export class SystemEffects {
             new SystemActions.SetDimensions({ width:this.platform.width() , height:this.platform.height() }),
             new SystemActions.SetViewport(this.platform.isPortrait()),
             new SystemActions.SetPlatform(this.platform._platforms),
+            new LayoutActions.HidePageLoader(),
             new SystemActions.InitializeSuccess()
         ];
     })

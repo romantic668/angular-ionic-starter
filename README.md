@@ -35,6 +35,8 @@ css properly. Check components from time to time and remove the problematic ones
 
 - .yarnclean file breaks the tslint and therefore the tests and CI so don't use yarn until Yarn becomes a stable software (at least for Windows)
 
+- Angular animations doesn't work on ng4.rcX yet. There is a bug. Disable animations for now and re-enable them after ng4 update. [Issue](https://github.com/angular/angular/issues/14890)
+
 ### Locked Dependencies
 - protractor: locked to 5.0.0 (on 02/03/17 the latest version was 5.1.1) : Protractor above 5.0.0 doesnt work with firefox
 browser on Travis. For firefox, a flag marionette:false also needs to be set to use legacy Firefox version (<v48) (works ok on Windows dev machine)

@@ -5,15 +5,18 @@ import { routerReducer, RouterState } from '@ngrx/router-store';
 import { DEV_REDUCERS } from './dev/dev.reducers';
 
 import { SystemReducer, SystemState } from './system';
+import { LayoutReducer, LayoutState } from './layout';
 
 export interface AppState {
   router: RouterState;
   system: SystemState;
+  layout: LayoutState;
 };
 
 const reducers = {
   router: routerReducer,
-  system: SystemReducer
+  system: SystemReducer,
+  layout: LayoutReducer
 };
 
 const developmentReducer = compose(...DEV_REDUCERS, combineReducers)(reducers);
