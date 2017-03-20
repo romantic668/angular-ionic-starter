@@ -53,7 +53,7 @@ export class AppComponent  {
   }
 
   initializeApp() {
-    this.store.dispatch(new SystemActions.Initialize(null));
+    this.store.dispatch(new SystemActions.Initialize());
   }
 
   setupListeners() {

@@ -1,7 +1,7 @@
 import { getTestBed, TestBed, inject } from '@angular/core/testing';
 import { StoreModule, Store } from '@ngrx/store';
 import { EffectsTestingModule, EffectsRunner } from '@ngrx/effects/testing';
-import { IonicModule } from 'ionic-angular';
+import { Platform } from 'ionic-angular';
 
 import {
   SystemState,
@@ -19,11 +19,16 @@ describe('System store', () => {
         TestBed.configureTestingModule({
             imports: [
                 StoreModule.provideStore({ SystemReducer }),
-                EffectsTestingModule,
-                IonicModule
+                EffectsTestingModule
             ],
             providers:[
-              SystemEffects
+              SystemEffects, Platform
+              /*
+              {
+                provide: Platform,
+                useValue: jasmine.createSpyObj('platfrom', ['open', 'query', 'insert', 'executeWrite'])
+              }
+              */
             ]
         });
         testbed = getTestBed();
@@ -32,9 +37,9 @@ describe('System store', () => {
 
     function setup() {
       return {
-        //db: TestBed.get(Database),
         runner: TestBed.get(EffectsRunner),
-        systemEffects: TestBed.get(SystemEffects)
+        systemEffects: TestBed.get(SystemEffects),
+        platform: TestBed.get(Platform)
       };
     }
 
@@ -44,53 +49,16 @@ describe('System store', () => {
 
     describe('- Effects', () => {
 
-      /*
-      let runner: EffectsRunner;
-      let systemEffects: SystemEffects;
-
-      beforeEach(inject([
-          EffectsRunner, SystemEffects
-        ],
-        (_runner, _systemEffects) => {
-          runner = _runner;
-          systemEffects = _systemEffects;
-        }
-      ));
-      */
-
-      it('should setup correctly', () => {
-        const {runner, systemEffects} = setup();
-        //systemEffects.openDB$.subscribe();
-        console.log(systemEffects);
-        expect(true).toBe(true);
-      });
-
-      /*
-      it('initialization$ effect start with SET_PLATFORM and returns SET_PLATFORM_SUCCESS', () => {
-        runner.queue({ type: 'INITIALIZE' });
+      it('initialization$ effect start and finish successfully', () => {
+        const {runner, systemEffects, platform} = setup();
+        runner.queue(new SystemActions.Initialize(null));
         systemEffects.initialize$.subscribe(result => {
-          console.log('Selami abi?');
           console.log(result);
-          expect(result).toEqual({ type: 'INITIALIZE_SUCCESS' });
-          //expect(result).not.toEqual({ type: 'SET_PLATFORM_FAIL' });
+          expect(result).toEqual({ type: '[System] [+++] Initialize success' });
+          //expect(result).not.toEqual({ type: 'INITIALIZE_FAIL' });
         });
       });
-      */
 
-      /*
-      it('initialization$ effect catches error and returns SET_PLATFORM_FAIL if something goes wrong', () => {
-
-        spyOn(SystemActions, 'SetDimensions').and.returnValue(Promise.reject(''));
-
-        runner.queue({ type: 'SET_PLATFORM' });
-        systemEffects.initialize$.subscribe(result => {
-          console.log('Korkan dayi basiin abi?');
-          console.log(result);
-          expect(result).not.toEqual({ type: 'SET_PLATFORM_SUCCESS' });
-          expect(result).toEqual({ type: 'SET_PLATFORM_FAIL' });
-        });
-      });
-      */
 
     });
 

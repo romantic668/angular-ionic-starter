@@ -23,10 +23,10 @@ export class SystemEffects {
     .ofType('[System] Initialize')
     .mergeMap(() => {
         return [
-            //new SystemActions.SetDimensions({ width:this.platform.width() , height:this.platform.height() }),
-            //new SystemActions.SetViewport(this.platform.isPortrait()),
-            //new SystemActions.SetPlatform(this.platform._platforms),
-            new SystemActions.InitializeSuccess(null)
+            // new SystemActions.SetDimensions({ width:this.platform.width() , height:this.platform.height() }),
+            // new SystemActions.SetViewport(this.platform.isPortrait()),
+            // new SystemActions.SetPlatform(this.platform._platforms),
+            new SystemActions.InitializeSuccess()
         ];
     })
     .catch(() => Observable.of({ type: '[System] [xxx] Initialize fail' }));
