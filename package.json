@@ -149,7 +149,7 @@
     "sass-loader": "6.0.3",
     "source-map-loader": "~0.2.0",
     "string-replace-loader": "~1.0.5",
-    "style-loader": "^0.14.0",
+    "style-loader": "^0.15.0",
     "to-string-loader": "~1.1.5",
     "ts-helpers": "~1.1.1",
     "ts-loader": "~2.0.1",
