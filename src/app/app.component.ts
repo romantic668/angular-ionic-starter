@@ -17,14 +17,17 @@ import { Subject } from 'rxjs/Subject';
     }  
   `],
   template: `
-    <ion-split-pane>
-      <ion-menu [content]="mainContent" swipeEnabled="true">
-        <ais-menu></ais-menu>
-      </ion-menu>
-      <div id="mainContent" main #mainContent>
-        <router-outlet></router-outlet>            
-      </div> 
-    </ion-split-pane>
+    <div class="app-container">
+      <page-loader></page-loader>
+      <ion-split-pane>
+        <ion-menu [content]="mainContent" swipeEnabled="true">
+          <ais-menu></ais-menu>
+        </ion-menu>
+        <div id="mainContent" main #mainContent>
+          <router-outlet></router-outlet>            
+        </div> 
+      </ion-split-pane>
+    </div>
   `
 })
 export class AppComponent  {
@@ -40,6 +43,7 @@ export class AppComponent  {
     private store: Store<AppState>
   ) {
 
+    // Fixing Cordova apps initial route problem
     this.router.navigate(['']);
 
     platform.ready().then(() => {
@@ -52,7 +56,7 @@ export class AppComponent  {
   }
 
   initializeApp() {
-    this.store.dispatch(new SystemActions.Initialize(null));
+    this.store.dispatch(new SystemActions.Initialize());
   }
 
   setupListeners() {

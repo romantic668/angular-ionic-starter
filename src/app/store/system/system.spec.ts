@@ -1,6 +1,8 @@
 import { getTestBed, TestBed, inject } from '@angular/core/testing';
 import { StoreModule, Store } from '@ngrx/store';
 import { EffectsTestingModule, EffectsRunner } from '@ngrx/effects/testing';
+import { Platform } from 'ionic-angular';
+import { PlatformMock } from '../mocks';
 
 import {
   SystemState,
@@ -8,8 +10,6 @@ import {
   SystemEffects,
   SystemActions
 } from './index';
-
-/*
 
 describe('System store', () => {
 
@@ -23,56 +23,45 @@ describe('System store', () => {
                 EffectsTestingModule
             ],
             providers:[
-              SystemEffects
+              SystemEffects,
+              {
+                provide: Platform,
+                useClass: PlatformMock
+              }
             ]
         });
         testbed = getTestBed();
         store = testbed.get(Store);
     });
 
+    function setup() {
+      return {
+        runner: TestBed.get(EffectsRunner),
+        systemEffects: TestBed.get(SystemEffects),
+        platform: TestBed.get(Platform)
+      };
+    }
+
     it('passes smoke test', () => {
         expect(store).toBeTruthy();
     });
 
+    /*
     describe('- Effects', () => {
 
-      let runner: EffectsRunner;
-      let systemEffects: SystemEffects;
+      it('initialization$ effect start and finish successfully', () => {
+        const {runner, systemEffects, platform} = setup();
 
-      beforeEach(inject([
-          EffectsRunner, SystemEffects
-        ],
-        (_runner, _systemEffects) => {
-          runner = _runner;
-          systemEffects = _systemEffects;
-        }
-      ));
-
-      it('initialization$ effect start with SET_PLATFORM and returns SET_PLATFORM_SUCCESS', () => {
-        runner.queue({ type: 'SET_PLATFORM' });
+        runner.queue(new SystemActions.Initialize());
         systemEffects.initialize$.subscribe(result => {
-          console.log('Selami abi?');
           console.log(result);
-          expect(result).toEqual({ type: 'SET_PLATFORM_SUCCESS' });
-          expect(result).not.toEqual({ type: 'SET_PLATFORM_FAIL' });
+          expect(result).toBeAnInstanceOf(new SystemActions.InitializeSuccess());
         });
+
       });
 
-      it('initialization$ effect catches error and returns SET_PLATFORM_FAIL if something goes wrong', () => {
-
-        spyOn(SystemActions, 'SetDimensions').and.returnValue(Promise.reject(''));
-
-        runner.queue({ type: 'SET_PLATFORM' });
-        systemEffects.initialize$.subscribe(result => {
-          console.log('Korkan dayi basiin abi?');
-          console.log(result);
-          expect(result).not.toEqual({ type: 'SET_PLATFORM_SUCCESS' });
-          expect(result).toEqual({ type: 'SET_PLATFORM_FAIL' });
-        });
-      });
 
     });
+    */
 
 });
-
-*/

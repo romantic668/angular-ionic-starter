@@ -20,11 +20,15 @@ export const SystemStateInitial: SystemState = {
   }
 };
 
-export function SystemReducer(state = SystemStateInitial, action: SystemActions.Actions): SystemState {
+
+export function SystemReducer(state = SystemStateInitial, action: Action): SystemState {
 
   switch (action.type) {
 
     case SystemActions.ActionTypes.SET_DIMENSIONS: {
+
+      const books = action.payload;
+
       return Object.assign({}, state, {
         dimensions: action.payload
       });
@@ -71,6 +75,15 @@ export function SystemReducer(state = SystemStateInitial, action: SystemActions.
       return Object.assign({}, state, {
         platform:platformHere
       });
+    }
+
+
+    case SystemActions.ActionTypes.INITIALIZE_FAIL: {
+
+      console.log('Burdayim abi ama ne bok yicem biliyri');
+      console.log(action);
+
+      return state;
     }
 
     default: {

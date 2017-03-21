@@ -25,6 +25,7 @@ beforeEach(() => {
         }
       };
     },
+
     toHaveCssClass: function (util, customEqualityTests) {
       return { compare: buildError(false), negativeCompare: buildError(true) };
 
@@ -39,6 +40,7 @@ beforeEach(() => {
         };
       }
     },
+
     toBeAnInstanceOf: function () {
       return {
         compare: function (actual: any, expectedClass: any) {
@@ -52,5 +54,6 @@ beforeEach(() => {
         }
       };
     }
+
   });
 });

@@ -10,6 +10,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { bootloader } from '@angularclass/hmr';
 import { AppModule } from './app/app.module';
 import { decorateModuleRef } from './environment';
+import { platformBrowser } from '@angular/platform-browser';
 
 if ('production' === ENV) {
   enableProdMode();

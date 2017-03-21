@@ -27,6 +27,7 @@ import { NotFoundPage } from './pages/not-found.page';
 
 import { HeaderComponent } from './components/layout/header.component';
 import { MenuComponent } from './components/layout/menu.component';
+import { PageLoaderComponent } from './components/layout/page-loader.component';
 
 export const APP_DECLARATIONS = [
   AppComponent,
@@ -36,7 +37,8 @@ export const APP_DECLARATIONS = [
   NotFoundPage,
 
   HeaderComponent,
-  MenuComponent
+  MenuComponent,
+  PageLoaderComponent
 ];
 
 export const APP_ENTRY_COMPONENTS = [

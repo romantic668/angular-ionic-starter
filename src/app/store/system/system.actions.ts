@@ -5,7 +5,7 @@ import { System } from './system.model';
 export const ActionTypes = {
   INITIALIZE:             type('[System] Initialize'),
   INITIALIZE_SUCCESS:     type('[System] [+++] Initialize success'),
-  INITIALIZE_FAIL   :     type('[System] [xxx] Initialize fail'),
+  INITIALIZE_FAIL:        type('[System] [xxx] Initialize fail'),
   SET_PLATFORM:           type('[System] Set platform'),
   SET_DIMENSIONS:         type('[System] Set dimensions'),
   SET_VIEWPORT:           type('[System] Set viewport')
@@ -13,15 +13,13 @@ export const ActionTypes = {
 
 export class Initialize implements Action {
   type = ActionTypes.INITIALIZE;
-  constructor(public payload: null) {}
 }
 export class InitializeSuccess implements Action {
   type = ActionTypes.INITIALIZE_SUCCESS;
-  constructor(public payload: null) {}
 }
 export class InitializeFail implements Action {
   type = ActionTypes.INITIALIZE_FAIL;
-  constructor(public payload: null) {}
+  constructor(public payload:any) {}
 }
 
 export class SetPlatform implements Action {
